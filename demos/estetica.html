@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ateliê Pele &amp; Cia — Estética</title>
+<meta name="description" content="Demonstração: site fictício de clínica de estética criado pela Assaf Inteligence.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#fffaf6; --ink:#2b1626; --muted:#6e5566;
+  --rasp:#c2185b; --rasp-d:#9c1049; --peach:#ffc8a8; --lilac:#d9c8f2; --blush:#ffe3ea;
+  --card:#ffffff; --line:rgba(43,22,38,.1);
+  --serif:"Cormorant Garamond","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --sans:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --r:24px; --pad:clamp(16px,5vw,56px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 var(--sans);overflow-x:clip}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.05;margin:0}
+p{margin:0}
+a{color:inherit}
+.wrap{max-width:1160px;margin:0 auto;padding:0 var(--pad)}
+.eyebrow{font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--rasp);font-weight:600}
+
+/* demo banner */
+.demo{background:var(--ink);color:#fff;text-align:center;font-size:.82rem;padding:9px 16px;position:relative;z-index:30}
+.demo strong{color:var(--peach);font-weight:600}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);background:rgba(255,250,246,.72);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;height:62px}
+.logo{font-family:var(--serif);font-size:1.45rem;font-weight:600;text-decoration:none;white-space:nowrap}
+.logo span{color:var(--rasp);font-style:italic}
+.nav ul{display:none;list-style:none;margin:0;padding:0;gap:28px;font-size:.92rem}
+.nav ul a{text-decoration:none;color:var(--muted)}
+.nav ul a:hover{color:var(--rasp)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:.55em;border:0;border-radius:999px;padding:.95em 1.6em;font:600 .95rem/1 var(--sans);text-decoration:none;cursor:pointer;transition:transform .25s,box-shadow .25s,background .25s}
+.btn-p{background:linear-gradient(135deg,var(--rasp),#e2457f);color:#fff;box-shadow:0 10px 30px -10px rgba(194,24,91,.6)}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 16px 36px -12px rgba(194,24,91,.7)}
+.btn-g{background:rgba(255,255,255,.7);color:var(--ink);border:1px solid var(--line)}
+.btn-g:hover{background:#fff}
+.btn-s{padding:.7em 1.15em;font-size:.85rem}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 6px var(--peach)}
+
+/* hero */
+.hero{position:relative;overflow:hidden;padding:clamp(64px,12vw,140px) 0 clamp(72px,12vw,150px);isolation:isolate}
+.hero::before{content:"";position:absolute;inset:-20%;z-index:-2;
+  background:
+   radial-gradient(40% 45% at 18% 25%,rgba(255,200,168,.95),transparent 70%),
+   radial-gradient(38% 40% at 85% 20%,rgba(217,200,242,.95),transparent 70%),
+   radial-gradient(45% 45% at 70% 85%,rgba(226,69,127,.42),transparent 70%),
+   radial-gradient(35% 35% at 20% 90%,rgba(255,227,234,1),transparent 70%);
+  filter:blur(10px);animation:drift 18s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate3d(-3%,2%,0) rotate(4deg) scale(1.05)}}
+.hero .wrap{text-align:center}
+.hero h1{font-size:clamp(2.9rem,11vw,7.4rem);letter-spacing:-.02em;max-width:12ch;margin:18px auto 0}
+.hero h1 em{color:var(--rasp);font-style:italic}
+.hero p.lead{max-width:34rem;margin:22px auto 0;color:var(--muted);font-size:clamp(1rem,2.6vw,1.15rem)}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:34px}
+.orb{position:absolute;border-radius:50%;z-index:-1;pointer-events:none}
+.orb.a{width:min(46vw,260px);aspect-ratio:1;right:-8%;top:12%;background:radial-gradient(circle at 30% 30%,#fff,rgba(255,200,168,.6) 45%,transparent 70%)}
+.orb.b{width:min(30vw,170px);aspect-ratio:1;left:-6%;bottom:8%;background:radial-gradient(circle at 35% 35%,#fff,rgba(217,200,242,.8) 45%,transparent 72%)}
+
+/* sections */
+section{scroll-margin-top:70px}
+.sec{padding:clamp(72px,11vw,130px) 0}
+.sec-head{max-width:40rem;margin-bottom:clamp(36px,6vw,64px)}
+.sec-head h2{font-size:clamp(2.3rem,7vw,4.2rem);margin-top:12px}
+.sec-head h2 em{font-style:italic;color:var(--rasp)}
+.sec-head p{color:var(--muted);margin-top:16px}
+
+/* procedimentos: stacked sticky cards */
+.stack{display:grid;gap:22px;padding-bottom:4vh}
+.pc{position:sticky;top:calc(84px + var(--i)*14px);border-radius:var(--r);padding:clamp(26px,5vw,48px);min-height:240px;
+  display:grid;gap:18px;align-content:start;border:1px solid rgba(255,255,255,.7);
+  box-shadow:0 30px 60px -35px rgba(43,22,38,.35);overflow:hidden;isolation:isolate}
+.pc::after{content:"";position:absolute;width:260px;aspect-ratio:1;border-radius:50%;right:-70px;bottom:-90px;z-index:-1;background:rgba(255,255,255,.45)}
+.pc:nth-child(1){background:linear-gradient(135deg,#ffe3ea,#ffd4bf)}
+.pc:nth-child(2){background:linear-gradient(135deg,#efe4fb,#ffe3ea)}
+.pc:nth-child(3){background:linear-gradient(135deg,#ffd9c6,#f4d5e8)}
+.pc:nth-child(4){background:linear-gradient(135deg,#e8dcfa,#d9c8f2)}
+.pc:nth-child(5){background:linear-gradient(135deg,#ffdce6,#ffc8a8)}
+.pc .num{font-family:var(--serif);font-size:1rem;color:var(--rasp);font-style:italic}
+.pc h3{font-size:clamp(1.9rem,6vw,3rem)}
+.pc p{color:var(--muted);max-width:36rem}
+.pc .ic{width:52px;height:52px;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--rasp)}
+.pc .ic svg{width:26px;height:26px}
+.note{font-size:.85rem;color:var(--muted);margin-top:18px}
+
+/* experiência: pinned heading */
+.exp{background:linear-gradient(180deg,var(--bg),#fbeff3 30%,#f3ecfb 70%,var(--bg))}
+.exp-grid{display:grid;gap:32px}
+.exp-pin .sec-head{margin-bottom:0}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:18px;counter-reset:s}
+.step{background:var(--card);border-radius:var(--r);padding:26px 24px 26px 82px;position:relative;border:1px solid var(--line);counter-increment:s}
+.step::before{content:counter(s,decimal-leading-zero);position:absolute;left:22px;top:22px;width:42px;height:42px;border-radius:50%;
+  display:grid;place-items:center;font:600 .85rem var(--sans);color:#fff;background:linear-gradient(135deg,var(--rasp),#e98aa8)}
+.step h3{font-size:1.6rem}
+.step p{color:var(--muted);margin-top:6px}
+
+/* ambiente */
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{position:relative;border-radius:20px;aspect-ratio:3/4;overflow:hidden;isolation:isolate}
+.tile.w{grid-column:span 2;aspect-ratio:16/10}
+.tile .lbl{position:absolute;left:12px;bottom:12px;right:12px;display:flex;flex-direction:column;gap:2px;color:var(--ink)}
+.tile .lbl b{font-family:var(--serif);font-size:1.3rem;font-weight:600;line-height:1.1}
+.tile .lbl small{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+.t1{background:radial-gradient(60% 50% at 70% 25%,rgba(255,255,255,.9),transparent 60%),linear-gradient(160deg,#ffd4bf,#f6a6c1 60%,#d9c8f2)}
+.t1::before{content:"";position:absolute;left:10%;right:10%;bottom:24%;height:22%;border-radius:999px 999px 18px 18px;background:linear-gradient(#fff6f1,#f4d9d0);box-shadow:0 18px 30px -18px rgba(43,22,38,.4)}
+.t2{background:linear-gradient(180deg,#efe4fb 0 58%,#e3cfe6 58%)}
+.t2::before{content:"";position:absolute;left:50%;top:14%;width:44%;aspect-ratio:1/1.4;transform:translateX(-50%);border-radius:999px 999px 0 0;background:linear-gradient(#ffe3ea,#ffc8a8);border:6px solid #fff}
+.t3{background:linear-gradient(200deg,#ffe3ea,#ffc8a8)}
+.t3::before{content:"";position:absolute;inset:18% 22% 34%;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#ffd9c6 60%,#f3a3b9)}
+.t4{background:linear-gradient(135deg,#c2185b,#e2457f 45%,#ffc8a8)}
+.t4 .lbl{color:#fff}
+.t4::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.12) 0 2px,transparent 2px 38px)}
+.t5{background:linear-gradient(170deg,#f3ecfb,#d9c8f2)}
+.t5::before{content:"";position:absolute;left:22%;right:22%;top:20%;height:44%;border-radius:40% 40% 10% 10%;background:linear-gradient(#fff,#ffe3ea);box-shadow:0 0 0 10px rgba(255,255,255,.4)}
+.t6{background:radial-gradient(70% 60% at 30% 30%,#fff3ec,transparent 70%),linear-gradient(120deg,#ffe3ea,#efe4fb)}
+.t6::before{content:"";position:absolute;left:12%;bottom:30%;width:76%;height:6px;border-radius:6px;background:#c9a7b6;box-shadow:0 -40px 0 -1px #e7c9d4,0 -80px 0 -2px #f1dbe3}
+
+/* local */
+.local{display:grid;gap:18px}
+.info{background:var(--card);border-radius:var(--r);padding:28px 24px;border:1px solid var(--line)}
+.info h3{font-size:1.7rem;margin-bottom:8px}
+.info p{color:var(--muted)}
+.info .ph{display:inline-block;background:var(--blush);color:var(--rasp-d);border-radius:8px;padding:2px 10px;font-weight:600;margin-top:6px}
+.map{border-radius:var(--r);min-height:240px;position:relative;overflow:hidden;
+  background:
+   linear-gradient(90deg,transparent 47%,rgba(255,255,255,.85) 47% 53%,transparent 53%),
+   linear-gradient(0deg,transparent 60%,rgba(255,255,255,.85) 60% 65%,transparent 65%),
+   linear-gradient(35deg,transparent 30%,rgba(255,255,255,.6) 30% 33%,transparent 33%),
+   linear-gradient(135deg,#f3ecfb,#ffe3ea)}
+.map svg{position:absolute;left:50%;top:50%;width:44px;transform:translate(-50%,-90%);filter:drop-shadow(0 8px 10px rgba(194,24,91,.35))}
+.map small{position:absolute;right:14px;bottom:12px;font-size:.72rem;color:var(--muted)}
+
+/* final cta */
+.final{margin:0 var(--pad) clamp(56px,8vw,96px);border-radius:32px;padding:clamp(48px,9vw,96px) clamp(22px,5vw,64px);text-align:center;color:#fff;
+  background:radial-gradient(50% 70% at 15% 20%,rgba(255,200,168,.55),transparent 70%),radial-gradient(50% 70% at 90% 90%,rgba(217,200,242,.55),transparent 70%),linear-gradient(135deg,#9c1049,#c2185b 50%,#e2457f)}
+.final h2{font-size:clamp(2.2rem,7vw,4.4rem);max-width:16ch;margin:0 auto}
+.final p{max-width:32rem;margin:16px auto 0;opacity:.92}
+.final .cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px}
+.final .btn-p{background:#fff;color:var(--rasp-d)}
+.final .btn-g{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+.final .btn:focus-visible{outline-color:#fff;box-shadow:0 0 0 6px var(--ink)}
+
+footer{border-top:1px solid var(--line);padding:32px 0 40px;font-size:.88rem;color:var(--muted)}
+footer .wrap{display:grid;gap:10px}
+footer .logo{font-size:1.25rem;color:var(--ink)}
+
+@media (min-width:760px){
+  .nav ul{display:flex}
+  .tiles{grid-template-columns:repeat(3,1fr);gap:16px}
+  .tile.w{grid-column:span 2;aspect-ratio:auto}
+  .tile.t6{grid-column:span 3;aspect-ratio:3/1}
+  .local{grid-template-columns:1fr 1fr 1.3fr}
+  .map{min-height:auto}
+}
+@media (min-width:980px){
+  .exp-grid{grid-template-columns:5fr 7fr;gap:64px;align-items:start}
+  .exp-pin{position:sticky;top:120px}
+  .pc{grid-template-columns:auto 1fr;column-gap:32px;min-height:260px}
+  .pc .ic{grid-row:span 3}
+}
+
+/* motion: visible by default; scroll-driven where supported */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion:no-preference){
+    .rv{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+    .pc{animation:shrink linear both;animation-timeline:view();animation-range:exit 0% exit 100%}
+    .hero h1{animation:float linear both;animation-timeline:scroll();animation-range:0 600px}
+  }
+}
+@keyframes rise{from{opacity:.2;transform:translateY(40px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes shrink{to{transform:scale(.94);filter:saturate(.8)}}
+@keyframes float{to{transform:translateY(-60px);opacity:.55}}
+/* IntersectionObserver fallback (class added by JS only when needed) */
+.io .rv{transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.io .rv:not(.in){opacity:0;transform:translateY(36px)}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<div class="demo" role="note"><strong>Demonstração</strong> — site fictício criado pela Assaf Inteligence</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#topo">Ateliê <span>Pele</span> &amp; Cia</a>
+    <nav aria-label="Principal"><ul>
+      <li><a href="#procedimentos">Procedimentos</a></li>
+      <li><a href="#experiencia">Sua experiência</a></li>
+      <li><a href="#ambiente">Ambiente</a></li>
+      <li><a href="#local">Localização</a></li>
+    </ul></nav>
+    <a class="btn btn-p btn-s" href="#">Agendar</a>
+  </div>
+</header>
+
+<main id="topo">
+  <section class="hero">
+    <span class="orb a"></span><span class="orb b"></span>
+    <div class="wrap">
+      <p class="eyebrow">Clínica de estética</p>
+      <h1>O cuidado que a sua pele <em>merece</em></h1>
+      <p class="lead">Um espaço acolhedor, pensado para que cada visita seja um momento só seu — com atenção, calma e protocolos conduzidos por profissionais habilitados.</p>
+      <div class="cta">
+        <a class="btn btn-p" href="#">Agendar avaliação</a>
+        <a class="btn btn-g" href="#procedimentos">Conhecer procedimentos</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="procedimentos">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="eyebrow">Procedimentos</p>
+        <h2>Rituais de cuidado, <em>feitos sob medida</em></h2>
+        <p>Cada atendimento começa com uma conversa. A partir dela, indicamos o que faz sentido para você e para o seu momento.</p>
+      </div>
+      <div class="stack">
+        <article class="pc" style="--i:0">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3c3 4 6 7 6 10.5A6 6 0 0 1 6 13.5C6 10 9 7 12 3z"/></svg></div>
+          <span class="num">01</span>
+          <h3>Limpeza de pele</h3>
+          <p>Higienização profunda, extração cuidadosa e hidratação, em um passo a passo tranquilo que deixa a pele com sensação de leveza e frescor.</p>
+        </article>
+        <article class="pc" style="--i:1">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg></div>
+          <span class="num">02</span>
+          <h3>Peeling</h3>
+          <p>Renovação suave das camadas superficiais da pele, com o tipo de peeling definido na avaliação, sempre respeitando a sensibilidade de cada pessoa.</p>
+        </article>
+        <article class="pc" style="--i:2">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8c3-3 6 3 9 0s6 3 9 0M3 13c3-3 6 3 9 0s6 3 9 0M3 18c3-3 6 3 9 0s6 3 9 0"/></svg></div>
+          <span class="num">03</span>
+          <h3>Drenagem linfática</h3>
+          <p>Movimentos manuais lentos e ritmados, em uma sessão relaxante que convida o corpo a desacelerar e traz uma agradável sensação de bem-estar.</p>
+        </article>
+        <article class="pc" style="--i:3">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 20 20 4M14 4h6v6"/><circle cx="6" cy="6" r="2"/></svg></div>
+          <span class="num">04</span>
+          <h3>Depilação a laser</h3>
+          <p>Sessões planejadas de acordo com o seu tipo de pele e de pelo, com orientações claras antes e depois de cada etapa.</p>
+        </article>
+        <article class="pc" style="--i:4">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 14c4-5 11-6 18-3"/><path d="M5 17c3-2 8-3 13-1"/></svg></div>
+          <span class="num">05</span>
+          <h3>Design de sobrancelhas</h3>
+          <p>Desenho pensado a partir do formato do seu rosto e do seu estilo, para valorizar a sua expressão com naturalidade.</p>
+        </article>
+      </div>
+      <p class="note">A indicação de cada procedimento é feita individualmente, após avaliação.</p>
+    </div>
+  </section>
+
+  <section class="sec exp" id="experiencia">
+    <div class="wrap exp-grid">
+      <div class="exp-pin">
+        <div class="sec-head">
+          <p class="eyebrow">Sua experiência</p>
+          <h2>Do primeiro contato <em>ao seu retorno</em></h2>
+          <p>Um caminho simples e sem pressa, para você se sentir à vontade em cada etapa.</p>
+        </div>
+      </div>
+      <ol class="steps">
+        <li class="step rv"><h3>Agendamento</h3><p>Você escolhe o melhor dia e horário pelo WhatsApp, sem complicação.</p></li>
+        <li class="step rv"><h3>Recepção</h3><p>Ao chegar, é recebida com calma em um ambiente acolhedor, com tempo para se acomodar.</p></li>
+        <li class="step rv"><h3>Avaliação</h3><p>Conversamos sobre a sua rotina, os seus cuidados atuais e o que você gostaria de sentir.</p></li>
+        <li class="step rv"><h3>Plano de cuidado</h3><p>Apresentamos as opções indicadas para você, explicando cada etapa com transparência.</p></li>
+        <li class="step rv"><h3>Atendimento</h3><p>O procedimento é realizado no seu ritmo, com conforto e atenção a cada detalhe.</p></li>
+        <li class="step rv"><h3>Orientações e retorno</h3><p>Você sai com recomendações de cuidados em casa e, se fizer sentido, com o próximo encontro combinado.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="ambiente">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="eyebrow">Ambiente</p>
+        <h2>Um refúgio <em>delicado</em> no meio do dia</h2>
+        <p>Luz suave, tons claros e silêncio na medida certa.</p>
+      </div>
+      <div class="tiles">
+        <div class="tile w t1 rv"><div class="lbl"><b>Recepção</b><small>Imagem ilustrativa</small></div></div>
+        <div class="tile t2 rv"><div class="lbl"><b>Sala de atendimento</b><small>Imagem ilustrativa</small></div></div>
+        <div class="tile t3 rv"><div class="lbl"><b>Cantinho do chá</b><small>Imagem ilustrativa</small></div></div>
+        <div class="tile t4 rv"><div class="lbl"><b>Corredor</b><small>Imagem ilustrativa</small></div></div>
+        <div class="tile t5 rv"><div class="lbl"><b>Espelho de finalização</b><small>Imagem ilustrativa</small></div></div>
+        <div class="tile w t6 rv"><div class="lbl"><b>Produtos e cuidados</b><small>Imagem ilustrativa</small></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="local" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="eyebrow">Localização e horário</p>
+        <h2>Venha nos <em>visitar</em></h2>
+      </div>
+      <div class="local">
+        <div class="info rv"><h3>Endereço</h3><p>Estamos em:</p><span class="ph">[endereço]</span></div>
+        <div class="info rv"><h3>Horário</h3><p>Atendimento com hora marcada:</p><span class="ph">[horário]</span></div>
+        <div class="map rv" role="img" aria-label="Mapa ilustrativo">
+          <svg viewBox="0 0 24 32" aria-hidden="true"><path d="M12 0C5.4 0 0 5.2 0 11.7 0 20.5 12 32 12 32s12-11.5 12-20.3C24 5.2 18.6 0 12 0z" fill="#c2185b"/><circle cx="12" cy="11.5" r="4.5" fill="#fff"/></svg>
+          <small>Mapa ilustrativo</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final rv" aria-labelledby="cta-t">
+    <h2 id="cta-t">Reserve um momento para você</h2>
+    <p>Agende a sua avaliação e descubra, com calma, o cuidado que combina com a sua pele.</p>
+    <div class="cta">
+      <a class="btn btn-p" href="#">Agendar avaliação</a>
+      <a class="btn btn-g" href="#">Falar no WhatsApp</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="logo">Ateliê <span style="color:var(--rasp);font-style:italic">Pele</span> &amp; Cia</span>
+    <p>[endereço] · [horário]</p>
+    <p>Site fictício de demonstração criado pela Assaf Inteligence. Nomes, imagens e informações são ilustrativos.</p>
+  </div>
+</footer>
+
+<script>
+// Fallback reveal only where scroll-driven animations are unsupported and motion is allowed.
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || (window.CSS && CSS.supports('animation-timeline: view()')) || !('IntersectionObserver' in window)) return;
+  document.documentElement.classList.add('io');
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>

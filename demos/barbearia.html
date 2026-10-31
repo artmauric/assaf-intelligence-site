@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Navalha Velha Barbearia</title>
+<meta name="description" content="Navalha Velha Barbearia — site fictício de demonstração criado pela Assaf Inteligence.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c0a09; --bg2:#15110e; --ink:#f4ece2; --mute:#b5a796;
+  --copper:#c47a3a; --amber:#f0a63f; --red:#e3291b;
+  --display:"Anton","Impact","Haettenschweiler","Arial Narrow Bold",sans-serif;
+  --body:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --pad:clamp(18px,5vw,64px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.55 var(--body);overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:.9;letter-spacing:.01em;margin:0}
+p{margin:0}
+.wrap{padding-inline:var(--pad);max-width:1280px;margin-inline:auto}
+.eyebrow{font:800 .75rem/1 var(--body);letter-spacing:.22em;text-transform:uppercase;color:var(--amber)}
+.eyebrow::before{content:"";display:inline-block;width:28px;height:2px;background:var(--red);vertical-align:middle;margin-right:10px}
+
+/* demo banner */
+.demo{background:var(--amber);color:#1a1006;text-align:center;font:800 .8rem/1.3 var(--body);padding:10px 16px;letter-spacing:.02em}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:rgba(12,10,9,.86);backdrop-filter:blur(8px);border-bottom:1px solid rgba(196,122,58,.25)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;height:60px}
+.logo{font:400 1.25rem/1 var(--display);text-transform:uppercase;letter-spacing:.04em;text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo span{color:var(--amber)}
+.nav ul{display:none;list-style:none;margin:0;padding:0;gap:28px;font-weight:600;font-size:.9rem}
+.nav ul a{text-decoration:none;color:var(--mute)}
+.nav ul a:hover{color:var(--ink)}
+@media (min-width:860px){.nav ul{display:flex}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;font:800 .95rem/1 var(--body);text-transform:uppercase;letter-spacing:.08em;text-decoration:none;padding:16px 24px;border-radius:2px;background:var(--red);color:#fff;border:2px solid var(--red);transition:transform .2s,background .2s}
+.btn:hover{background:#ff3b2b;transform:translateY(-2px)}
+.btn.ghost{background:transparent;border-color:var(--copper);color:var(--ink)}
+.btn.ghost:hover{background:rgba(196,122,58,.15)}
+.btn.sm{padding:10px 14px;font-size:.78rem}
+a:focus-visible,.btn:focus-visible,.strip:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+
+/* hero */
+.hero{position:relative;min-height:calc(100svh - 100px);display:flex;align-items:flex-end;overflow:hidden;
+  background:
+   radial-gradient(ellipse 70% 60% at 80% 20%,rgba(240,166,63,.28),transparent 60%),
+   radial-gradient(ellipse 60% 50% at 10% 90%,rgba(227,41,27,.22),transparent 60%),
+   var(--bg)}
+.hero::before{content:"";position:absolute;inset:0;opacity:.08;
+  background:repeating-linear-gradient(115deg,var(--ink) 0 2px,transparent 2px 22px)}
+.pole{position:absolute;right:var(--pad);top:40px;width:34px;height:46%;border-radius:17px;overflow:hidden;border:3px solid var(--copper);
+  background:repeating-linear-gradient(135deg,var(--red) 0 14px,var(--ink) 14px 28px,#1f3a8a 28px 42px,var(--ink) 42px 56px);background-size:100% 160px;animation:pole 3s linear infinite}
+@media (max-width:600px){.pole{opacity:.35;width:24px}}
+@keyframes pole{to{background-position:0 160px}}
+.hero .wrap{position:relative;width:100%;padding-block:56px}
+.hero h1{font-size:clamp(4.2rem,19vw,15rem);margin:18px 0 22px}
+.hero h1 em{font-style:normal;color:transparent;-webkit-text-stroke:2px var(--amber)}
+.hero h1 b{font-weight:400;color:var(--red)}
+.hero p.lead{max-width:30ch;font-size:clamp(1.05rem,2.6vw,1.35rem);color:var(--mute);margin-bottom:28px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
+
+/* marquee */
+.marquee{background:var(--red);color:#fff;overflow:hidden;white-space:nowrap;border-block:2px solid #000}
+.marquee div{display:inline-block;font:400 clamp(1.6rem,6vw,3rem)/1.2 var(--display);text-transform:uppercase;padding:8px 0;animation:mq 22s linear infinite}
+.marquee span{margin:0 .6em;color:#1a0503}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* sections */
+section{padding-block:clamp(72px,12vw,140px)}
+.h2{font-size:clamp(3rem,12vw,8rem);margin:16px 0 18px}
+.h2 .c{color:var(--copper)}
+.sub{color:var(--mute);max-width:44ch;font-size:1.05rem}
+
+/* services strip */
+.strip{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:36px var(--pad) 24px;scrollbar-color:var(--copper) transparent;-webkit-overflow-scrolling:touch}
+.card{flex:0 0 min(82vw,340px);scroll-snap-align:start;position:relative;min-height:420px;padding:28px 24px;display:flex;flex-direction:column;justify-content:flex-end;border:1px solid rgba(196,122,58,.35);background:linear-gradient(180deg,var(--bg2),#0a0807);overflow:hidden}
+.card .n{position:absolute;top:10px;right:16px;font:400 7rem/1 var(--display);color:transparent;-webkit-text-stroke:1.5px rgba(240,166,63,.35)}
+.card svg{width:56px;height:56px;margin-bottom:auto;color:var(--amber)}
+.card h3{font-size:2.6rem;margin:24px 0 10px}
+.card p{color:var(--mute)}
+.card:nth-child(odd){background:linear-gradient(180deg,#1b120c,#0a0807)}
+.card.hot{background:linear-gradient(160deg,var(--red),#7d1209);border-color:var(--red)}
+.card.hot p{color:#ffe1d8}
+.card.hot svg{color:#fff}
+.hint{font-size:.85rem;color:var(--mute);padding-inline:var(--pad)}
+
+/* ritual (sticky) */
+.ritual{background:linear-gradient(180deg,var(--bg),#1a0f08 50%,var(--bg))}
+.ritual .grid{display:grid;gap:40px}
+.ritual .stick{position:sticky;top:60px;z-index:2;background:linear-gradient(180deg,#140d08 80%,transparent);padding-block:14px}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:18px;counter-reset:s}
+.step{counter-increment:s;padding:28px 22px 28px 86px;position:relative;border-left:3px solid var(--copper);background:rgba(255,255,255,.025)}
+.step::before{content:counter(s,decimal-leading-zero);position:absolute;left:18px;top:22px;font:400 3rem/1 var(--display);color:var(--red)}
+.step h3{font-size:2rem;margin-bottom:8px}
+.step p{color:var(--mute)}
+@media (min-width:900px){
+  .ritual .grid{grid-template-columns:1fr 1.1fr;align-items:start}
+  .ritual .stick{top:100px;background:none}
+  .ritual .h2{font-size:clamp(5rem,9vw,9rem)}
+  .step{padding-block:44px}
+}
+
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:40px}
+.tile{position:relative;aspect-ratio:3/4;overflow:hidden;border:1px solid rgba(196,122,58,.3)}
+.tile::after{content:"Foto ilustrativa";position:absolute;left:10px;bottom:10px;font:600 .7rem/1 var(--body);letter-spacing:.1em;text-transform:uppercase;background:rgba(0,0,0,.65);padding:6px 8px;color:var(--ink)}
+.tile:nth-child(1){background:radial-gradient(circle at 50% 38%,#e9b17a 0 18%,transparent 19%),radial-gradient(ellipse at 50% 90%,#3a2416 0 40%,transparent 41%),linear-gradient(160deg,#5a3115,#140b06)}
+.tile:nth-child(2){background:repeating-linear-gradient(45deg,var(--red) 0 18px,#f4ece2 18px 36px,#1f3a8a 36px 54px,#f4ece2 54px 72px)}
+.tile:nth-child(3){background:radial-gradient(circle at 30% 30%,rgba(240,166,63,.7),transparent 40%),conic-gradient(from 200deg at 60% 60%,#2a1a10,#c47a3a,#2a1a10,#0c0a09)}
+.tile:nth-child(4){background:linear-gradient(90deg,transparent 46%,#d9d2c8 46% 54%,transparent 54%),linear-gradient(0deg,#0c0a09 0 30%,#3d2414 30% 34%,#0c0a09 34%),radial-gradient(circle at 50% 20%,#f0a63f,#4a2a12 60%)}
+.tile:nth-child(5){background:radial-gradient(circle,#c47a3a 1.5px,transparent 2px) 0 0/16px 16px,linear-gradient(200deg,#1c130d,#0c0a09)}
+.tile:nth-child(6){background:linear-gradient(135deg,transparent 40%,var(--red) 40% 44%,transparent 44%),linear-gradient(135deg,#3a1d0d,#0c0a09 70%)}
+@media (min-width:760px){.gal{grid-template-columns:repeat(3,1fr);gap:14px}.tile:nth-child(2),.tile:nth-child(6){transform:translateY(40px)}}
+
+/* info */
+.info{background:var(--bg2);border-block:1px solid rgba(196,122,58,.25)}
+.info .grid{display:grid;gap:22px;margin-top:36px}
+.box{padding:26px 22px;border:1px solid rgba(196,122,58,.35);background:var(--bg)}
+.box h3{font-size:1.8rem;color:var(--amber);margin-bottom:12px}
+.box dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 16px}
+.box dt{font-weight:600}
+.box dd{margin:0;color:var(--mute)}
+.box p{color:var(--mute);margin-bottom:16px}
+@media (min-width:760px){.info .grid{grid-template-columns:repeat(3,1fr)}}
+
+/* final cta */
+.final{text-align:center;background:radial-gradient(ellipse at 50% 100%,rgba(227,41,27,.35),transparent 60%),var(--bg)}
+.final h2{font-size:clamp(3.4rem,15vw,12rem)}
+.final h2 span{color:var(--red)}
+.final p{color:var(--mute);margin:20px auto 32px;max-width:36ch}
+
+footer{padding:40px 0 48px;border-top:1px solid rgba(196,122,58,.25);color:var(--mute);font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between}
+
+/* motion: visible by default; JS adds .js to enable IO fallback */
+.js .rv{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.js .rv.in{opacity:1;transform:none}
+@supports (animation-timeline: view()){
+  .js .rv{opacity:1;transform:none;transition:none;animation:rise linear both;animation-timeline:view();animation-range:entry 0% cover 30%}
+  .hero h1{animation:drift linear both;animation-timeline:scroll();animation-range:0 80vh}
+  @keyframes rise{from{opacity:0;transform:translateY(60px) scale(.97)}to{opacity:1;transform:none}}
+  @keyframes drift{to{transform:translateX(-8%);opacity:.35}}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .js .rv{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+<div class="demo" role="note">Demonstração — site fictício criado pela Assaf Inteligence</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#topo" aria-label="Navalha Velha Barbearia, início">
+      <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 22 22 4l6 6-18 18H4z" fill="none" stroke="#f0a63f" stroke-width="2.5"/><path d="M4 22h6v6" fill="none" stroke="#e3291b" stroke-width="2.5"/></svg>
+      Navalha <span>Velha</span>
+    </a>
+    <ul>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#ritual">O ritual</a></li>
+      <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#visite">Visite</a></li>
+    </ul>
+    <a class="btn sm" href="#">Marcar horário</a>
+  </div>
+</header>
+
+<main id="topo">
+  <section class="hero" aria-labelledby="h-hero">
+    <div class="pole" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="eyebrow">Barbearia clássica</p>
+      <h1 id="h-hero">Corte <em>na</em><br><b>navalha.</b></h1>
+      <p class="lead">Tesoura afiada. Toalha quente. Conversa boa. Você sai outro.</p>
+      <div class="ctas">
+        <a class="btn" href="#">Marcar horário</a>
+        <a class="btn ghost" href="#servicos">Ver serviços</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div>Corte <span>✦</span> Barba <span>✦</span> Navalha <span>✦</span> Toalha quente <span>✦</span> Estilo <span>✦</span> Corte <span>✦</span> Barba <span>✦</span> Navalha <span>✦</span> Toalha quente <span>✦</span> Estilo <span>✦</span></div></div>
+
+  <section id="servicos" aria-labelledby="h-serv">
+    <div class="wrap rv">
+      <p class="eyebrow">Serviços</p>
+      <h2 class="h2" id="h-serv">Feito <span class="c">à mão.</span></h2>
+      <p class="sub">Cada serviço tem seu tempo. Sem pressa, sem atalho.</p>
+    </div>
+    <div class="strip" tabindex="0" role="region" aria-label="Lista de serviços, role para o lado">
+      <article class="card">
+        <span class="n" aria-hidden="true">01</span>
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="36" r="6"/><circle cx="36" cy="36" r="6"/><path d="M16 32 38 6M32 32 10 6"/></svg>
+        <h3>Corte</h3>
+        <p>Do clássico ao degradê. Acabamento na navalha e finalização com pomada.</p>
+      </article>
+      <article class="card">
+        <span class="n" aria-hidden="true">02</span>
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 30 34 6l8 8-28 24H6z"/><path d="M6 30h8v8"/></svg>
+        <h3>Barba</h3>
+        <p>Toalha quente, espuma e navalha. Contorno desenhado no seu rosto.</p>
+      </article>
+      <article class="card hot">
+        <span class="n" aria-hidden="true">03</span>
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M24 4l5 13h14l-11 8 4 14-12-8-12 8 4-14L5 17h14z"/></svg>
+        <h3>Corte + Barba</h3>
+        <p>O combo completo. A visita que vale a tarde inteira.</p>
+      </article>
+      <article class="card">
+        <span class="n" aria-hidden="true">04</span>
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M24 6c8 10 12 17 12 23a12 12 0 0 1-24 0c0-6 4-13 12-23z"/></svg>
+        <h3>Pigmentação</h3>
+        <p>Preenche falhas e dá definição. Resultado natural, sem exagero.</p>
+      </article>
+      <article class="card">
+        <span class="n" aria-hidden="true">05</span>
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 26c8-10 28-10 36 0"/><path d="M8 34h32"/></svg>
+        <h3>Sobrancelha</h3>
+        <p>Limpeza e alinhamento discretos. Olhar firme, sem cara de feito.</p>
+      </article>
+    </div>
+    <p class="hint">Arraste para o lado →</p>
+  </section>
+
+  <section id="ritual" class="ritual" aria-labelledby="h-rit">
+    <div class="wrap grid">
+      <div class="stick">
+        <p class="eyebrow">Passo a passo</p>
+        <h2 class="h2" id="h-rit">O <span class="c">ritual.</span></h2>
+        <p class="sub">É assim toda vez. Do começo ao fim.</p>
+      </div>
+      <ol class="steps">
+        <li class="step rv"><h3>Chegada</h3><p>Você chega no horário marcado. Senta, toma um café e relaxa.</p></li>
+        <li class="step rv"><h3>Conversa</h3><p>O barbeiro ouve o que você quer e sugere o que combina com você.</p></li>
+        <li class="step rv"><h3>Lavagem</h3><p>Cabelo lavado e preparado. Começa limpo, termina melhor.</p></li>
+        <li class="step rv"><h3>O corte</h3><p>Máquina, tesoura e navalha. Cada detalhe no lugar.</p></li>
+        <li class="step rv"><h3>Toalha quente</h3><p>Abre os poros e prepara a pele para a barba.</p></li>
+        <li class="step rv"><h3>Finalização</h3><p>Loção, pomada e espelho. Você confere tudo antes de sair.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="galeria" aria-labelledby="h-gal">
+    <div class="wrap">
+      <div class="rv">
+        <p class="eyebrow">Galeria</p>
+        <h2 class="h2" id="h-gal">Dentro <span class="c">da casa.</span></h2>
+      </div>
+      <div class="gal">
+        <div class="tile rv" role="img" aria-label="Foto ilustrativa: cliente na cadeira"></div>
+        <div class="tile rv" role="img" aria-label="Foto ilustrativa: poste de barbearia"></div>
+        <div class="tile rv" role="img" aria-label="Foto ilustrativa: luz quente do salão"></div>
+        <div class="tile rv" role="img" aria-label="Foto ilustrativa: navalha na bancada"></div>
+        <div class="tile rv" role="img" aria-label="Foto ilustrativa: detalhe da parede"></div>
+        <div class="tile rv" role="img" aria-label="Foto ilustrativa: cadeira de barbeiro"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="visite" class="info" aria-labelledby="h-vis">
+    <div class="wrap">
+      <div class="rv">
+        <p class="eyebrow">Visite</p>
+        <h2 class="h2" id="h-vis">Cadeira <span class="c">livre.</span></h2>
+      </div>
+      <div class="grid">
+        <div class="box rv">
+          <h3>Horários</h3>
+          <dl>
+            <dt>Seg a sex</dt><dd>[horário]</dd>
+            <dt>Sábado</dt><dd>[horário]</dd>
+            <dt>Domingo</dt><dd>[horário]</dd>
+          </dl>
+        </div>
+        <div class="box rv">
+          <h3>Endereço</h3>
+          <p>[endereço]<br>[bairro] — [cidade]/[UF]</p>
+          <a class="btn ghost sm" href="#">Abrir no mapa</a>
+        </div>
+        <div class="box rv">
+          <h3>Contato</h3>
+          <p>WhatsApp: [telefone]<br>Instagram: [@perfil]</p>
+          <a class="btn sm" href="#">Chamar no WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final" aria-labelledby="h-fin">
+    <div class="wrap rv">
+      <p class="eyebrow">Sua vez</p>
+      <h2 id="h-fin">Bora <span>cortar?</span></h2>
+      <p>Escolha o dia. A cadeira espera por você.</p>
+      <a class="btn" href="#">Marcar horário</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© Navalha Velha Barbearia — marca fictícia.</span>
+    <span>Demonstração criada pela Assaf Inteligence.</span>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+// IO fallback only when scroll-driven animations are missing
+if (!(window.CSS && CSS.supports('animation-timeline: view()')) && 'IntersectionObserver' in window) {
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold: .12});
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+} else if (!('IntersectionObserver' in window)) {
+  document.querySelectorAll('.rv').forEach(el => el.classList.add('in'));
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moura Advocacia — Demonstração</title>
+<meta name="description" content="Site fictício de demonstração de um escritório de advocacia, criado pela Assaf Inteligence.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{
+  --navy:#0b1b3f; --navy-2:#12285c; --royal:#1d3f9a; --gold:#e3b23c; --gold-2:#f2c94c;
+  --ivory:#f8f4ea; --ivory-2:#efe8d6; --ink:#14182b; --muted:#4a5168;
+  --serif:"Fraunces","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --pad:clamp(16px,5vw,64px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ivory);color:var(--ink);font:400 1rem/1.6 var(--sans);overflow-x:clip}
+img,svg{max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.08;margin:0}
+p{margin:0 0 1em}
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--pad)}
+.eyebrow{font:600 .75rem/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+:focus-visible{outline:3px solid var(--gold-2);outline-offset:3px;border-radius:4px}
+
+/* demo banner */
+.demo{background:var(--gold);color:var(--navy);text-align:center;font:600 .85rem/1.4 var(--sans);padding:10px 16px}
+
+/* header */
+header.top{position:sticky;top:0;z-index:20;background:rgba(11,27,63,.92);backdrop-filter:blur(8px);color:var(--ivory)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font:600 1.15rem/1 var(--serif)}
+.logo svg{flex:none}
+nav ul{display:none;list-style:none;margin:0;padding:0;gap:28px;font-size:.92rem}
+nav a{text-decoration:none;opacity:.85}
+nav a:hover{opacity:1;color:var(--gold-2)}
+.btn{display:inline-flex;align-items:center;gap:10px;border:0;cursor:pointer;text-decoration:none;
+  background:var(--gold);color:var(--navy);font:600 1rem/1 var(--sans);padding:16px 24px;border-radius:999px;transition:transform .2s,background .2s}
+.btn:hover{background:var(--gold-2);transform:translateY(-2px)}
+.btn:focus-visible{outline:3px solid var(--ivory);box-shadow:0 0 0 6px var(--navy)}
+.btn.sm{padding:10px 16px;font-size:.88rem}
+.btn.ghost{background:transparent;color:var(--ivory);border:1px solid rgba(248,244,234,.4)}
+.btn.ghost:hover{border-color:var(--gold);color:var(--gold-2)}
+@media (min-width:880px){nav ul{display:flex}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;color:var(--ivory);
+  background:radial-gradient(120% 80% at 85% 10%,var(--royal) 0%,transparent 60%),
+             radial-gradient(90% 70% at 0% 100%,#0f2a6b 0%,transparent 55%),var(--navy);
+  padding:clamp(64px,14vw,160px) 0 clamp(72px,12vw,140px)}
+.hero h1{font-size:clamp(2.6rem,10.5vw,7rem);letter-spacing:-.02em;max-width:12ch;margin:22px 0 28px}
+.hero h1 em{font-style:italic;color:var(--gold-2)}
+.hero p.lead{font-size:clamp(1.05rem,2.4vw,1.3rem);max-width:38ch;color:rgba(248,244,234,.82);margin-bottom:36px}
+.hero .actions{display:flex;flex-wrap:wrap;gap:12px}
+.hero .ring{position:absolute;right:-120px;top:40px;width:520px;height:520px;border:1px solid rgba(227,178,60,.35);border-radius:50%;pointer-events:none}
+.hero .ring::after{content:"";position:absolute;inset:60px;border:1px solid rgba(227,178,60,.18);border-radius:50%}
+.hero .bar{position:absolute;left:0;bottom:0;height:6px;width:100%;background:linear-gradient(90deg,var(--gold),transparent)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:56px;font-size:.88rem;color:rgba(248,244,234,.7)}
+.hero-meta span::before{content:"";display:inline-block;width:8px;height:8px;background:var(--gold);transform:rotate(45deg);margin-right:10px}
+
+/* areas */
+.areas{padding:clamp(72px,12vw,140px) 0}
+.sec-head{display:grid;gap:18px;margin-bottom:clamp(40px,7vw,80px)}
+.sec-head h2{font-size:clamp(2.2rem,7vw,4.4rem);letter-spacing:-.015em;max-width:14ch}
+.sec-head p{color:var(--muted);max-width:52ch;margin:0}
+@media (min-width:880px){.sec-head{grid-template-columns:1fr 1fr;align-items:end}}
+.area{display:grid;grid-template-columns:auto 1fr;gap:6px 20px;padding:32px 0;border-top:1px solid #d9cfb6}
+.area:last-child{border-bottom:1px solid #d9cfb6}
+.area .num{font:400 clamp(2.4rem,8vw,5rem)/1 var(--serif);color:var(--royal);grid-row:span 2;min-width:2ch}
+.area h3{font-size:clamp(1.5rem,4.5vw,2.4rem);color:var(--navy)}
+.area p{color:var(--muted);margin:6px 0 0;max-width:60ch}
+.area ul{grid-column:2;margin:12px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.area li{font-size:.82rem;background:var(--ivory-2);border:1px solid #e0d6bd;padding:5px 12px;border-radius:999px;color:var(--navy)}
+@media (min-width:880px){.area{grid-template-columns:140px 1fr 1.1fr;gap:12px 40px;align-items:start}
+  .area .num{grid-row:1 / span 2}.area h3,.area p{grid-column:2}.area ul{grid-column:3;grid-row:1 / span 2;margin:0;align-self:center}}
+
+/* process (pinned moment) */
+.process{background:var(--navy);color:var(--ivory);padding:clamp(72px,12vw,140px) 0;position:relative}
+.process .grid{display:grid;gap:40px}
+.process .pin h2{font-size:clamp(2.2rem,7vw,4.4rem);margin:18px 0 20px;max-width:12ch}
+.process .pin p{color:rgba(248,244,234,.75);max-width:40ch}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:18px;counter-reset:s}
+.step{background:linear-gradient(160deg,var(--navy-2),#0d2150);border:1px solid rgba(227,178,60,.22);border-radius:18px;padding:28px 24px;position:relative}
+.step::before{counter-increment:s;content:"Etapa " counter(s);display:block;font:600 .72rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.step h3{font-size:clamp(1.4rem,4vw,1.9rem);margin-bottom:10px}
+.step p{color:rgba(248,244,234,.75);margin:0}
+@media (min-width:880px){
+  .process .grid{grid-template-columns:1fr 1.15fr;gap:80px}
+  .process .pin{position:sticky;top:120px;align-self:start}
+  .steps{gap:28px}.step{padding:40px 36px;min-height:240px}
+}
+
+/* about */
+.about{padding:clamp(72px,12vw,140px) 0;background:linear-gradient(180deg,var(--ivory) 0%,var(--ivory-2) 100%)}
+.about .grid{display:grid;gap:40px;align-items:center}
+.about h2{font-size:clamp(2.2rem,7vw,4.2rem);margin:18px 0 24px;max-width:14ch}
+.about p{color:var(--muted);max-width:58ch}
+.about .ph{display:inline-block;background:#fff6dc;border:1px dashed var(--gold);padding:2px 8px;border-radius:6px;color:var(--navy);font-weight:500}
+.emblem{aspect-ratio:1;max-width:420px;width:100%;margin:0 auto;border-radius:28px;
+  background:radial-gradient(circle at 30% 25%,var(--royal),var(--navy) 70%);display:grid;place-items:center;box-shadow:0 30px 60px -30px rgba(11,27,63,.55)}
+.emblem svg{width:62%}
+.facts{display:grid;grid-template-columns:1fr;gap:12px;margin-top:28px;padding:0;list-style:none}
+.facts li{border-left:3px solid var(--gold);padding:4px 0 4px 14px;color:var(--navy)}
+@media (min-width:880px){.about .grid{grid-template-columns:1.1fr .9fr;gap:80px}.facts{grid-template-columns:1fr 1fr}}
+
+/* contact */
+.contact{background:radial-gradient(100% 80% at 100% 0%,var(--royal),transparent 60%),var(--navy);color:var(--ivory);padding:clamp(72px,12vw,140px) 0}
+.contact .grid{display:grid;gap:48px}
+.contact h2{font-size:clamp(2.2rem,7vw,4.2rem);margin:18px 0 20px;max-width:12ch}
+.contact .info p{color:rgba(248,244,234,.78)}
+.contact dl{margin:28px 0 0;display:grid;gap:18px}
+.contact dt{font:600 .72rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.contact dd{margin:0}
+form{background:var(--ivory);color:var(--ink);border-radius:22px;padding:clamp(22px,4vw,40px);display:grid;gap:18px}
+label{font-weight:600;font-size:.9rem;color:var(--navy);display:block;margin-bottom:6px}
+input[type=text],input[type=tel],select{width:100%;font:inherit;padding:13px 14px;border:1px solid #cfc4a8;border-radius:10px;background:#fff;color:var(--ink)}
+input:focus-visible,select:focus-visible{outline:3px solid var(--royal);outline-offset:1px;border-color:var(--royal)}
+.check{display:flex;gap:12px;align-items:flex-start}
+.check input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--royal);flex:none}
+.check label{font-weight:400;font-size:.86rem;color:var(--muted);margin:0}
+form .btn{justify-content:center;width:100%}
+form .btn:focus-visible{outline:3px solid var(--navy);box-shadow:0 0 0 6px var(--gold-2)}
+.msg{display:none;background:#e8eefc;border:1px solid var(--royal);color:var(--navy);padding:12px 14px;border-radius:10px;font-weight:600;font-size:.92rem}
+.msg.show{display:block}
+.note{font-size:.78rem;color:var(--muted);margin:0}
+@media (min-width:880px){.contact .grid{grid-template-columns:1fr 1fr;gap:80px;align-items:start}}
+
+footer{background:#081430;color:rgba(248,244,234,.7);padding:40px 0;font-size:.86rem}
+footer .wrap{display:grid;gap:14px}
+footer strong{color:var(--ivory);font-family:var(--serif);font-weight:600;font-size:1.05rem}
+@media (min-width:880px){footer .wrap{grid-template-columns:1fr auto;align-items:center}}
+
+/* motion: visible by default; animate only when supported */
+@media (prefers-reduced-motion:no-preference){
+  @supports (animation-timeline:view()){
+    .reveal{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+    .area .num{animation:numIn linear both;animation-timeline:view();animation-range:entry 10% cover 40%}
+  }
+  @supports not (animation-timeline:view()){
+    .js .reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
+    .js .reveal.in{opacity:1;transform:none}
+  }
+}
+@keyframes rise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+@keyframes numIn{from{opacity:.15;transform:translateX(-24px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="demo" role="note">Demonstração — site fictício criado pela Assaf Inteligence</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#inicio" aria-label="Moura Advocacia, início">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="7" fill="none" stroke="#e3b23c" stroke-width="2"/><path d="M8 23V9l8 9 8-9v14" fill="none" stroke="#e3b23c" stroke-width="2.4" stroke-linejoin="round"/></svg>
+      Moura Advocacia
+    </a>
+    <nav aria-label="Principal"><ul>
+      <li><a href="#areas">Áreas de atuação</a></li>
+      <li><a href="#atendimento">Atendimento</a></li>
+      <li><a href="#sobre">O escritório</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul></nav>
+    <a class="btn sm" href="#contato">Contato</a>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+  <div class="ring" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow">Escritório de advocacia</span>
+    <h1>Orientação jurídica com <em>clareza</em> em cada etapa.</h1>
+    <p class="lead">Atuação em direito de família, trabalhista, do consumidor, previdenciário e empresarial, com linguagem acessível e acompanhamento próximo.</p>
+    <div class="actions">
+      <a class="btn" href="#contato">Agendar primeiro contato
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="btn ghost" href="#areas">Ver áreas de atuação</a>
+    </div>
+    <div class="hero-meta"><span>Atendimento presencial e on-line</span><span>Horário agendado</span></div>
+  </div>
+  <div class="bar" aria-hidden="true"></div>
+</section>
+
+<section class="areas" id="areas">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow" style="color:var(--royal)">Áreas de atuação</span>
+      <h2>Cinco frentes, um mesmo cuidado.</h2></div>
+      <p>Cada área exige conhecimento específico. Abaixo, uma visão geral dos temas em que o escritório presta consultoria e atua em processos judiciais e administrativos.</p>
+    </div>
+
+    <article class="area reveal"><span class="num" aria-hidden="true">01</span>
+      <h3>Direito de Família</h3>
+      <p>Orientação em questões que envolvem relações familiares, buscando soluções consensuais sempre que possível.</p>
+      <ul><li>Divórcio</li><li>Guarda e convivência</li><li>Pensão alimentícia</li><li>Inventário</li></ul>
+    </article>
+    <article class="area reveal"><span class="num" aria-hidden="true">02</span>
+      <h3>Direito Trabalhista</h3>
+      <p>Análise de vínculos, verbas e condições de trabalho, para empregados e empregadores.</p>
+      <ul><li>Rescisão</li><li>Horas extras</li><li>Acordos</li><li>Consultoria preventiva</li></ul>
+    </article>
+    <article class="area reveal"><span class="num" aria-hidden="true">03</span>
+      <h3>Direito do Consumidor</h3>
+      <p>Esclarecimento de direitos nas relações de consumo e atuação diante de cobranças, contratos e serviços.</p>
+      <ul><li>Cobranças indevidas</li><li>Contratos</li><li>Produtos e serviços</li></ul>
+    </article>
+    <article class="area reveal"><span class="num" aria-hidden="true">04</span>
+      <h3>Direito Previdenciário</h3>
+      <p>Orientação sobre benefícios do INSS, análise de tempo de contribuição e acompanhamento de pedidos.</p>
+      <ul><li>Aposentadorias</li><li>Auxílios</li><li>Revisões</li><li>Planejamento previdenciário</li></ul>
+    </article>
+    <article class="area reveal"><span class="num" aria-hidden="true">05</span>
+      <h3>Direito Empresarial</h3>
+      <p>Apoio jurídico a pequenas e médias empresas na estruturação e na rotina do negócio.</p>
+      <ul><li>Contratos</li><li>Constituição de empresas</li><li>Acordo de sócios</li></ul>
+    </article>
+  </div>
+</section>
+
+<section class="process" id="atendimento">
+  <div class="wrap grid">
+    <div class="pin">
+      <span class="eyebrow">Como funciona o atendimento</span>
+      <h2>Um caminho claro, do primeiro contato ao acompanhamento.</h2>
+      <p>Cada caso tem sua particularidade, mas o percurso segue etapas definidas para que você saiba sempre o que acontece a seguir.</p>
+    </div>
+    <ol class="steps">
+      <li class="step reveal"><h3>Primeiro contato</h3><p>Você envia uma mensagem pelo formulário ou por telefone e informa, em linhas gerais, o assunto. O escritório retorna para agendar uma conversa.</p></li>
+      <li class="step reveal"><h3>Reunião de análise</h3><p>Em reunião presencial ou on-line, o advogado ouve o relato, tira dúvidas e indica quais documentos serão necessários.</p></li>
+      <li class="step reveal"><h3>Avaliação e orientação</h3><p>Com os documentos em mãos, o caso é analisado e você recebe uma explicação sobre os caminhos jurídicos possíveis e seus riscos.</p></li>
+      <li class="step reveal"><h3>Contratação formal</h3><p>Se decidir seguir, os termos do trabalho são formalizados em contrato escrito de prestação de serviços.</p></li>
+      <li class="step reveal"><h3>Acompanhamento</h3><p>Você recebe atualizações periódicas sobre o andamento e tem um canal direto para dúvidas durante todo o processo.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="about" id="sobre">
+  <div class="wrap grid">
+    <div class="reveal">
+      <span class="eyebrow" style="color:var(--royal)">Sobre o escritório</span>
+      <h2>Atendimento próximo e linguagem acessível.</h2>
+      <p>A Moura Advocacia atende pessoas e pequenas empresas da região. O escritório tem como princípio explicar cada etapa de forma compreensível, para que o cliente participe das decisões com informação.</p>
+      <p>Advogado responsável: <span class="ph">[nome do advogado responsável, OAB/UF nº]</span></p>
+      <ul class="facts">
+        <li>Atendimento com hora marcada</li>
+        <li>Reuniões presenciais ou por vídeo</li>
+        <li>Contrato de serviços por escrito</li>
+        <li>Sigilo profissional em todas as etapas</li>
+      </ul>
+    </div>
+    <div class="emblem reveal" aria-hidden="true">
+      <svg viewBox="0 0 200 200"><g fill="none" stroke="#e3b23c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M100 30v130M60 160h80M100 48l-56 14M100 48l56 14"/>
+        <path d="M44 62l-22 48h44zM156 62l-22 48h44z"/>
+        <path d="M22 110a22 10 0 0 0 44 0M134 110a22 10 0 0 0 44 0"/>
+        <circle cx="100" cy="40" r="8" fill="#e3b23c"/></g></svg>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contato">
+  <div class="wrap grid">
+    <div class="info reveal">
+      <span class="eyebrow">Contato</span>
+      <h2>Agende um primeiro contato.</h2>
+      <p>Preencha o formulário com seus dados e o assunto. O escritório retorna para combinar data e horário da conversa inicial.</p>
+      <dl>
+        <div><dt>Endereço</dt><dd>[endereço]</dd></div>
+        <div><dt>Horário</dt><dd>Segunda a sexta, com agendamento prévio</dd></div>
+        <div><dt>WhatsApp</dt><dd><a class="btn ghost sm" href="#">Enviar mensagem (demonstração)</a></dd></div>
+      </dl>
+    </div>
+    <form id="form" class="reveal" novalidate>
+      <div><label for="nome">Nome completo</label><input id="nome" name="nome" type="text" autocomplete="name" required></div>
+      <div><label for="tel">Telefone</label><input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000" required></div>
+      <div><label for="area">Área do assunto</label>
+        <select id="area" name="area" required>
+          <option value="">Selecione</option>
+          <option>Direito de Família</option><option>Direito Trabalhista</option><option>Direito do Consumidor</option>
+          <option>Direito Previdenciário</option><option>Direito Empresarial</option><option>Outro assunto</option>
+        </select></div>
+      <div class="check"><input id="lgpd" name="lgpd" type="checkbox" required>
+        <label for="lgpd">Autorizo o uso dos meus dados apenas para retorno deste contato, conforme a Lei Geral de Proteção de Dados (LGPD).</label></div>
+      <button class="btn" type="submit">Enviar solicitação</button>
+      <p class="msg" id="msg" role="status" aria-live="polite"></p>
+      <p class="note">O envio do formulário não estabelece relação de prestação de serviços.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><strong>Moura Advocacia</strong><br>[endereço] · <span>[nome do advogado responsável, OAB/UF nº]</span></div>
+    <div>Site fictício de demonstração · Assaf Inteligence</div>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+if(!CSS.supports('animation-timeline: view()') && 'IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+} else document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
+document.getElementById('form').addEventListener('submit',e=>{
+  e.preventDefault();
+  const m=document.getElementById('msg');
+  m.textContent='Demonstração: nenhum dado foi enviado';
+  m.classList.add('show');
+});
+</script>
+</body>
+</html>

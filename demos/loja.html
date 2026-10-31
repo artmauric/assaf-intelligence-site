@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Empório da Vila — loja demonstrativa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+:root{
+  --cream:#fff7e8; --cream2:#fdebc8; --orange:#f26a1b; --orange-d:#c94f0c;
+  --sun:#ffc626; --green:#1f5a3a; --green-d:#143d27; --ink:#2a2118; --muted:#6b5a48;
+  --card:#fffdf8; --r:22px;
+  --display:"Fraunces", Georgia, "Times New Roman", serif;
+  --body:"DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.55 var(--body);overflow-x:clip}
+h1,h2,h3{font-family:var(--display);line-height:1.08;margin:0 0 .4em}
+p{margin:0 0 1em}
+a{color:inherit}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+.btn{display:inline-flex;align-items:center;gap:.5em;border:0;cursor:pointer;font:700 1rem var(--body);
+  padding:.85em 1.4em;border-radius:999px;background:var(--orange);color:#fff;text-decoration:none;
+  box-shadow:0 6px 0 var(--orange-d);transition:transform .15s, box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 0 var(--orange-d)}
+.btn:active{transform:translateY(3px);box-shadow:0 3px 0 var(--orange-d)}
+.btn.green{background:var(--green);box-shadow:0 6px 0 var(--green-d)}
+.btn.ghost{background:transparent;color:var(--green);box-shadow:inset 0 0 0 2px var(--green)}
+button:focus-visible,a:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+.cart button:focus-visible,.hero a:focus-visible{outline-color:var(--sun)}
+
+/* banner */
+.demo-banner{background:var(--green-d);color:#fff;text-align:center;font-weight:700;font-size:.9rem;padding:.6em 16px}
+
+/* header */
+header.top{position:sticky;top:0;z-index:20;background:rgba(255,247,232,.92);backdrop-filter:blur(8px);border-bottom:1px solid #f0dcb6}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;height:62px}
+.logo{display:flex;align-items:center;gap:.5em;font:800 1.25rem var(--display);color:var(--green);text-decoration:none}
+.logo svg{flex:none}
+nav.links{display:none;gap:22px;font-weight:500}
+nav.links a{text-decoration:none}
+.cart-toggle{position:relative;background:var(--green);color:#fff;border:0;border-radius:999px;padding:.55em 1em;font:700 .95rem var(--body);cursor:pointer}
+.badge{display:inline-grid;place-items:center;min-width:1.5em;height:1.5em;border-radius:999px;background:var(--sun);color:var(--ink);font-size:.8rem;margin-left:.35em}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:
+  radial-gradient(circle at 85% 20%, var(--sun) 0 18%, transparent 18.5%),
+  radial-gradient(circle at 10% 90%, #ff9a4a 0 22%, transparent 22.5%),
+  linear-gradient(160deg, var(--orange) 0%, #ff8a2b 55%, var(--sun) 120%);
+  color:#fff;padding:64px 0 90px}
+.hero .wrap{position:relative;z-index:1;display:grid;gap:32px}
+.hero .kicker{display:inline-block;background:var(--green);color:#fff;border-radius:999px;padding:.35em .9em;font-weight:700;font-size:.85rem;margin-bottom:1em}
+.hero h1{font-size:clamp(2.6rem,11vw,5.4rem);font-weight:800;letter-spacing:-.02em;text-shadow:0 3px 0 rgba(0,0,0,.08)}
+.hero h1 em{font-style:normal;color:var(--green-d)}
+.hero p.lead{font-size:1.15rem;max-width:34ch}
+.hero .actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px}
+.hero .btn{background:var(--green);box-shadow:0 6px 0 var(--green-d)}
+.hero .btn.ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px #fff}
+.hero-art{justify-self:center;width:min(320px,80vw)}
+.wave{position:absolute;left:0;right:0;bottom:-1px;height:60px;width:100%}
+.float{animation:bob 5s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-10px) rotate(-2deg)}}
+
+/* sections */
+section{padding:72px 0}
+.eyebrow{color:var(--orange-d);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:.8rem}
+h2{font-size:clamp(2rem,7vw,3.2rem);color:var(--green)}
+
+/* pinned category moment */
+.cats{background:var(--green);color:#fff;padding:0;overflow-x:clip}
+.cats-track{height:auto}
+.cats-sticky{padding:72px 0}
+.cats h2{color:var(--sun)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.chip{border:0;cursor:pointer;font:700 1rem var(--body);padding:.7em 1.15em;border-radius:999px;background:rgba(255,255,255,.12);color:#fff;transition:background .2s, transform .2s}
+.chip:hover{transform:translateY(-2px)}
+.chip[aria-pressed="true"]{background:var(--sun);color:var(--ink)}
+.chip:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+.cat-big{font:800 clamp(3rem,16vw,9rem)/.9 var(--display);color:var(--orange);margin-top:28px;white-space:nowrap;overflow:hidden}
+
+/* products */
+.grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:28px}
+.card{background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:0 2px 0 #f0dcb6, 0 14px 30px -18px rgba(90,50,10,.35);display:flex;flex-direction:column}
+.card[hidden]{display:none}
+.art{height:170px;display:grid;place-items:center}
+.art svg{width:120px;height:120px}
+.card .body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
+.card h3{font-size:1.3rem;color:var(--green)}
+.card p{color:var(--muted);font-size:.95rem}
+.price-row{margin-top:auto;display:flex;align-items:end;justify-content:space-between;gap:10px}
+.price{font:800 1.4rem var(--display);color:var(--ink)}
+.price small{display:block;font:500 .72rem var(--body);color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.add{padding:.6em 1em;font-size:.95rem}
+.tag{display:inline-block;font-size:.75rem;font-weight:700;background:var(--cream2);color:var(--orange-d);border-radius:999px;padding:.2em .7em;margin-bottom:.5em;align-self:flex-start}
+
+/* delivery */
+.delivery{background:var(--cream2)}
+.ways{display:grid;gap:18px;margin-top:24px}
+.way{background:var(--card);border-radius:var(--r);padding:24px}
+.way h3{color:var(--orange-d);font-size:1.5rem}
+.steps{list-style:none;padding:0;margin:0;counter-reset:s}
+.steps li{counter-increment:s;position:relative;padding:0 0 14px 46px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--sun);font-weight:800;color:var(--ink)}
+
+/* visit */
+.visit .box{background:var(--orange);color:#fff;border-radius:28px;padding:32px 24px;display:grid;gap:20px}
+.visit h2{color:#fff}
+.visit dl{margin:0;display:grid;gap:12px}
+.visit dt{font-weight:700;color:var(--green-d)}
+.visit dd{margin:0;font-size:1.15rem}
+
+footer{background:var(--green-d);color:#e9f1ea;padding:40px 0 120px;font-size:.92rem}
+footer .wrap{display:grid;gap:12px}
+footer strong{color:var(--sun);font-family:var(--display);font-size:1.3rem}
+
+/* cart drawer */
+.cart{position:fixed;z-index:40;left:0;right:0;bottom:0;max-height:78vh;background:var(--green-d);color:#fff;border-radius:24px 24px 0 0;
+  transform:translateY(100%);transition:transform .3s ease;display:flex;flex-direction:column;box-shadow:0 -12px 40px rgba(0,0,0,.25)}
+.cart.open{transform:none}
+.cart header{display:flex;justify-content:space-between;align-items:center;padding:18px 20px 10px}
+.cart h2{color:var(--sun);font-size:1.6rem;margin:0}
+.x{background:rgba(255,255,255,.12);color:#fff;border:0;border-radius:50%;width:40px;height:40px;font-size:1.3rem;cursor:pointer}
+.items{list-style:none;margin:0;padding:0 20px;overflow:auto;flex:1}
+.items li{display:grid;grid-template-columns:1fr auto;gap:4px 10px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.items .nm{font-weight:700}
+.items .sub{color:#cfe0d3;font-size:.9rem}
+.qty{display:flex;align-items:center;gap:6px;grid-row:span 2;align-self:center}
+.qty button{width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font:700 1.1rem var(--body);cursor:pointer}
+.qty span{min-width:1.5em;text-align:center;font-weight:700}
+.qty .rm{background:transparent;text-decoration:underline;width:auto;font-size:.85rem;padding:0 4px}
+.empty{padding:16px 20px;color:#cfe0d3}
+.cart footer.sum{background:none;padding:14px 20px 20px;color:#fff;display:grid;gap:10px}
+.total{display:flex;justify-content:space-between;font:800 1.3rem var(--display)}
+.cart .btn{justify-content:center;background:var(--sun);color:var(--ink);box-shadow:0 5px 0 #c99500}
+.msg{min-height:1.4em;color:var(--sun);font-weight:700;text-align:center;margin:0}
+.scrim{position:fixed;inset:0;background:rgba(20,30,20,.45);z-index:35;opacity:0;pointer-events:none;transition:opacity .3s}
+.scrim.on{opacity:1;pointer-events:auto}
+.bar{position:fixed;z-index:30;left:16px;right:16px;bottom:16px;display:flex;justify-content:space-between;align-items:center;gap:10px;
+  background:var(--green);color:#fff;border:0;border-radius:999px;padding:.85em 1.3em;font:700 1rem var(--body);cursor:pointer;box-shadow:0 10px 30px -8px rgba(0,0,0,.45)}
+.bar:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+
+@media (min-width:720px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .ways{grid-template-columns:1fr 1fr}
+  .visit .box{grid-template-columns:1.2fr 1fr;padding:48px}
+}
+@media (min-width:1000px){
+  nav.links{display:flex}
+  .grid{grid-template-columns:repeat(4,1fr)}
+  .hero{padding:90px 0 120px}
+  .hero .wrap{grid-template-columns:1.3fr 1fr;align-items:center}
+  .hero-art{width:400px}
+  .cart{left:auto;top:0;width:400px;max-height:none;border-radius:24px 0 0 24px;transform:translateX(100%)}
+  .cart.open{transform:none}
+  .bar{left:auto;width:320px;right:24px;bottom:24px}
+  /* pinned category moment: sticky panel over a tall track */
+  .cats-track{height:160vh}
+  .cats-sticky{position:sticky;top:62px;min-height:calc(100vh - 62px);display:flex;align-items:center}
+}
+
+/* reveal: visible by default; motion only as enhancement */
+.reveal{opacity:1}
+@media (prefers-reduced-motion:no-preference){
+  .js .reveal.io{opacity:0;transform:translateY(40px) scale(.96);transition:opacity .6s ease, transform .6s cubic-bezier(.2,.8,.3,1.2)}
+  .js .reveal.io.in{opacity:1;transform:none}
+  @supports (animation-timeline: view()){
+    .reveal{animation:pop linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+    .cat-big{animation:slide linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
+    @keyframes pop{from{opacity:0;transform:translateY(50px) scale(.94)}to{opacity:1;transform:none}}
+    @keyframes slide{from{transform:translateX(30%)}to{transform:translateX(-40%)}}
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .float{animation:none}
+  *{transition:none!important}
+}
+</style>
+</head>
+<body>
+<div class="demo-banner" role="note">Demonstração — loja fictícia criada pela Assaf Inteligence</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#inicio">
+      <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#f26a1b"/><path d="M8 19c3-8 13-8 16 0" stroke="#ffc626" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="16" cy="11" r="3" fill="#1f5a3a"/></svg>
+      Empório da Vila
+    </a>
+    <nav class="links" aria-label="Seções">
+      <a href="#categorias">Categorias</a><a href="#produtos">Produtos</a><a href="#entrega">Entrega</a><a href="#visite">Visite</a>
+    </nav>
+    <button class="cart-toggle" type="button" data-open-cart aria-controls="cart">Sacola<span class="badge" data-count>0</span></button>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+  <div class="wrap">
+    <div>
+      <span class="kicker">Do bairro para a sua mesa</span>
+      <h1>Sabores da vila, <em>quentinhos</em> pra você.</h1>
+      <p class="lead">Cafés especiais, geleias caseiras, queijos artesanais e cestas montadas com carinho. Peça online e retire na loja ou receba no bairro!</p>
+      <div class="actions">
+        <a class="btn" href="#produtos">Ver produtos</a>
+        <a class="btn ghost" href="#">Falar no WhatsApp</a>
+      </div>
+    </div>
+    <svg class="hero-art float" viewBox="0 0 300 300" role="img" aria-label="Ilustração de uma xícara de café com geleia e queijo">
+      <circle cx="150" cy="160" r="120" fill="#fff7e8" opacity=".25"/>
+      <ellipse cx="150" cy="250" rx="110" ry="16" fill="#c94f0c" opacity=".35"/>
+      <path d="M70 120h130v60a65 65 0 0 1-130 0z" fill="#fff7e8"/>
+      <path d="M200 135c30 0 30 45 0 45" stroke="#fff7e8" stroke-width="14" fill="none"/>
+      <ellipse cx="135" cy="120" rx="65" ry="12" fill="#6b3a1a"/>
+      <path d="M110 95c-10-15 10-25 0-40M140 95c-10-15 10-25 0-40M170 95c-10-15 10-25 0-40" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" opacity=".8"/>
+      <rect x="200" y="190" width="70" height="60" rx="10" fill="#1f5a3a"/>
+      <rect x="196" y="180" width="78" height="16" rx="6" fill="#ffc626"/>
+      <path d="M30 250l60-45 25 45z" fill="#ffc626"/><circle cx="70" cy="235" r="5" fill="#f2a900"/><circle cx="88" cy="242" r="4" fill="#f2a900"/>
+    </svg>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30c240-40 480 40 720 10s480-40 720 0v20H0z" fill="#1f5a3a"/></svg>
+</section>
+
+<section class="cats" id="categorias">
+  <div class="cats-track">
+    <div class="cats-sticky">
+      <div class="wrap" style="width:100%">
+        <p class="eyebrow" style="color:#ffc626">Categorias</p>
+        <h2>Escolha o que vai alegrar o seu dia.</h2>
+        <p>Toque em uma categoria para filtrar os produtos.</p>
+        <div class="chips" role="group" aria-label="Filtrar por categoria">
+          <button class="chip" type="button" data-cat="todos" aria-pressed="true">Todos</button>
+          <button class="chip" type="button" data-cat="cafes" aria-pressed="false">Cafés especiais</button>
+          <button class="chip" type="button" data-cat="geleias" aria-pressed="false">Geleias</button>
+          <button class="chip" type="button" data-cat="queijos" aria-pressed="false">Queijos</button>
+          <button class="chip" type="button" data-cat="cestas" aria-pressed="false">Cestas</button>
+        </div>
+        <div class="cat-big" aria-hidden="true">café · geleia · queijo · cesta</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="produtos">
+  <div class="wrap">
+    <p class="eyebrow">Produtos</p>
+    <h2>Feitos para dividir (ou não!).</h2>
+    <p>Os preços abaixo são ilustrativos e servem apenas para esta demonstração.</p>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section class="delivery" id="entrega">
+  <div class="wrap">
+    <p class="eyebrow">Como funciona a entrega</p>
+    <h2>Do jeito que for melhor pra você.</h2>
+    <div class="ways">
+      <div class="way reveal">
+        <h3>Retirada na loja</h3>
+        <ol class="steps">
+          <li>Monte a sua sacola aqui no site.</li>
+          <li>Escolha “retirada” e o melhor horário.</li>
+          <li>Avisamos quando estiver tudo pronto.</li>
+          <li>É só passar na loja e levar a sua alegria!</li>
+        </ol>
+      </div>
+      <div class="way reveal">
+        <h3>Entrega no bairro</h3>
+        <ol class="steps">
+          <li>Monte a sua sacola e informe o endereço.</li>
+          <li>Confirmamos a região de entrega.</li>
+          <li>Separamos tudo com cuidado.</li>
+          <li>Entregamos fresquinho na sua porta!</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="visit" id="visite">
+  <div class="wrap">
+    <div class="box reveal">
+      <div>
+        <h2>Venha tomar um café com a gente!</h2>
+        <p>A loja é pequena, o cheirinho de café é grande e o atendimento é de vizinho.</p>
+        <a class="btn green" href="#">Chamar no WhatsApp</a>
+      </div>
+      <dl>
+        <div><dt>Endereço</dt><dd>[endereço]</dd></div>
+        <div><dt>Horário</dt><dd>[horário]</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <strong>Empório da Vila</strong>
+    <p>Loja fictícia criada pela Assaf Inteligence apenas para demonstração. Produtos, preços e informações são ilustrativos.</p>
+    <p>© Empório da Vila — demonstração</p>
+  </div>
+</footer>
+
+<button class="bar" type="button" data-open-cart aria-controls="cart"><span>Ver sacola (<span data-count>0</span>)</span><span data-total>R$ 0,00</span></button>
+<div class="scrim" data-close-cart></div>
+<aside class="cart" id="cart" aria-label="Sacola de compras" aria-hidden="true">
+  <header><h2>Sua sacola</h2><button class="x" type="button" data-close-cart aria-label="Fechar sacola">×</button></header>
+  <p class="empty" data-empty>Sua sacola está vazia. Que tal um cafezinho?</p>
+  <ul class="items" data-items></ul>
+  <footer class="sum">
+    <div class="total"><span>Total</span><span data-total>R$ 0,00</span></div>
+    <button class="btn" type="button" data-checkout>Finalizar pedido</button>
+    <p class="msg" data-msg role="status" aria-live="polite"></p>
+  </footer>
+</aside>
+
+<script>
+document.documentElement.classList.add('js');
+const P = [
+  {id:1,cat:'cafes',tag:'Cafés especiais',name:'Café da Serra',desc:'Grãos torrados na semana, notas de chocolate e caramelo. 250 g.',price:38.9,bg:'#6b3a1a',fg:'#ffc626',shape:'bag'},
+  {id:2,cat:'cafes',tag:'Cafés especiais',name:'Café Florada',desc:'Torra média, leve e floral, perfeito para o coado da manhã. 250 g.',price:42.5,bg:'#f26a1b',fg:'#fff7e8',shape:'bag'},
+  {id:3,cat:'geleias',tag:'Geleias',name:'Geleia de Morango',desc:'Fruta de verdade e pouco açúcar, feita em pequenos lotes. 220 g.',price:24.9,bg:'#ffc626',fg:'#e0352b',shape:'jar'},
+  {id:4,cat:'geleias',tag:'Geleias',name:'Geleia de Laranja',desc:'Com casquinhas da fruta, ótima com queijo e torradas. 220 g.',price:22.9,bg:'#1f5a3a',fg:'#ff8a2b',shape:'jar'},
+  {id:5,cat:'queijos',tag:'Queijos',name:'Queijo Meia-Cura',desc:'Casca dourada e sabor marcante, curado por 30 dias. 500 g.',price:54.0,bg:'#fdebc8',fg:'#f2b705',shape:'cheese'},
+  {id:6,cat:'queijos',tag:'Queijos',name:'Queijo Fresco',desc:'Macio e levinho, ideal para o café da manhã. 400 g.',price:29.9,bg:'#f26a1b',fg:'#fff7e8',shape:'cheese'},
+  {id:7,cat:'cestas',tag:'Cestas',name:'Cesta Bom Dia',desc:'Café, geleia, queijo e biscoitos para um café da manhã especial.',price:129.9,bg:'#1f5a3a',fg:'#ffc626',shape:'basket'},
+  {id:8,cat:'cestas',tag:'Cestas',name:'Cesta Presente',desc:'Seleção caprichada para presentear quem você gosta.',price:189.9,bg:'#ffc626',fg:'#c94f0c',shape:'basket'}
+];
+const brl = v => v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const art = (s,fg) => ({
+  bag:`<path d="M30 35h60l8 75H22z" fill="${fg}"/><path d="M30 35l8-15h44l8 15" fill="${fg}" opacity=".7"/><circle cx="60" cy="70" r="14" fill="none" stroke="#2a2118" stroke-width="4"/><path d="M60 58v24" stroke="#2a2118" stroke-width="3"/>`,
+  jar:`<rect x="32" y="40" width="56" height="65" rx="14" fill="${fg}"/><rect x="36" y="22" width="48" height="20" rx="5" fill="#fff7e8"/><path d="M36 30h48" stroke="#2a2118" stroke-width="2" stroke-dasharray="4 4"/><rect x="42" y="62" width="36" height="22" rx="4" fill="#fff7e8"/>`,
+  cheese:`<path d="M15 85l90-45v45z" fill="${fg}"/><path d="M15 85h90v20H15z" fill="${fg}" opacity=".8"/><circle cx="70" cy="72" r="6" fill="#fff" opacity=".6"/><circle cx="88" cy="62" r="4" fill="#fff" opacity=".6"/><circle cx="45" cy="95" r="4" fill="#fff" opacity=".5"/>`,
+  basket:`<path d="M30 55a30 30 0 0 1 60 0" stroke="${fg}" stroke-width="7" fill="none"/><path d="M15 55h90l-12 50H27z" fill="${fg}"/><path d="M30 70h60M33 85h54" stroke="#2a2118" stroke-width="3" opacity=".35"/><circle cx="48" cy="50" r="9" fill="#e0352b"/><circle cx="70" cy="48" r="8" fill="#fff7e8"/>`
+})[s];
+const grid = document.getElementById('grid');
+grid.innerHTML = P.map(p => `
+  <article class="card reveal" data-cat="${p.cat}">
+    <div class="art" style="background:${p.bg}"><svg viewBox="0 0 120 120" aria-hidden="true">${art(p.shape,p.fg)}</svg></div>
+    <div class="body">
+      <span class="tag">${p.tag}</span>
+      <h3>${p.name}</h3>
+      <p>${p.desc}</p>
+      <div class="price-row">
+        <div class="price"><small>preço ilustrativo</small>${brl(p.price)}</div>
+        <button class="btn add" type="button" data-add="${p.id}" aria-label="Adicionar ${p.name} à sacola">Adicionar</button>
+      </div>
+    </div>
+  </article>`).join('');
+
+/* filter */
+document.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
+  document.querySelectorAll('.chip').forEach(o => o.setAttribute('aria-pressed', o === c));
+  const k = c.dataset.cat;
+  grid.querySelectorAll('.card').forEach(el => el.hidden = k !== 'todos' && el.dataset.cat !== k);
+  document.getElementById('produtos').scrollIntoView();
+}));
+
+/* cart */
+const cart = new Map(); // id -> qty
+const $ = s => document.querySelectorAll(s);
+const items = document.querySelector('[data-items]');
+const msg = document.querySelector('[data-msg]');
+function total(){ let t = 0; cart.forEach((q,id) => t += P.find(p => p.id === id).price * q); return Math.round(t*100)/100; }
+function render(){
+  const n = [...cart.values()].reduce((a,b) => a+b, 0);
+  $('[data-count]').forEach(e => e.textContent = n);
+  $('[data-total]').forEach(e => e.textContent = brl(total()));
+  document.querySelector('[data-empty]').hidden = n > 0;
+  items.innerHTML = [...cart].map(([id,q]) => { const p = P.find(x => x.id === id); return `
+    <li><span class="nm">${p.name}</span>
+      <div class="qty"><button type="button" data-dec="${id}" aria-label="Diminuir ${p.name}">−</button><span>${q}</span><button type="button" data-inc="${id}" aria-label="Aumentar ${p.name}">+</button><button type="button" class="rm" data-rm="${id}">remover</button></div>
+      <span class="sub">${brl(p.price*q)}</span></li>`; }).join('');
+  msg.textContent = '';
+}
+const change = (id,d) => { const q = (cart.get(id)||0) + d; q > 0 ? cart.set(id,q) : cart.delete(id); render(); };
+document.addEventListener('click', e => {
+  const t = e.target.closest('button,[data-close-cart]'); if (!t) return;
+  if (t.dataset.add) { change(+t.dataset.add, 1); t.textContent = 'Adicionado!'; setTimeout(() => t.textContent = 'Adicionar', 900); }
+  if (t.dataset.inc) change(+t.dataset.inc, 1);
+  if (t.dataset.dec) change(+t.dataset.dec, -1);
+  if (t.dataset.rm) { cart.delete(+t.dataset.rm); render(); }
+  if (t.hasAttribute('data-open-cart')) toggle(true);
+  if (t.hasAttribute('data-close-cart')) toggle(false);
+  if (t.hasAttribute('data-checkout')) msg.textContent = 'Demonstração: pagamento não está ativo';
+});
+const drawer = document.getElementById('cart'), scrim = document.querySelector('.scrim');
+function toggle(on){ drawer.classList.toggle('open', on); scrim.classList.toggle('on', on); drawer.setAttribute('aria-hidden', !on); if (on) drawer.querySelector('.x').focus(); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') toggle(false); });
+render();
+
+/* IntersectionObserver fallback when scroll-driven animations are unsupported */
+if (!CSS.supports('animation-timeline: view()') && 'IntersectionObserver' in window) {
+  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), {threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el => { el.classList.add('io'); io.observe(el); });
+}
+</script>
+</body>
+</html>
