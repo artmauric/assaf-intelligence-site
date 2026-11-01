@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { EMPRESA } from '../content.js'
+import { Logo } from './Logo.jsx'
 
 const LINKS = [
   ['#servicos', 'Serviços'],
@@ -12,7 +14,7 @@ export function Cabecalho() {
   const [aberto, setAberto] = useState(false)
   return (
     <header className="cabecalho">
-      <a className="logo" href="#inicio">Assaf</a>
+      <a className="logo" href="#inicio" aria-label={`${EMPRESA.nome}, início`}><Logo /></a>
       <nav className="nav-links" aria-label="Principal">
         {LINKS.map(([href, nome]) => <a key={href} href={href}>{nome}</a>)}
       </nav>

@@ -58,19 +58,24 @@ void main() {
   vec3 cor = metal(p * 0.78) * borda + vec3(0.03, 0.04, 0.028) * (1.0 - borda);
 
   vec2 ae = vec2(1.6 / uRes.x, 0.0);
-  float letra = texture2D(uLetras, vUv).r;
-  float letraR = texture2D(uLetras, vUv + ae).r;
-  float letraB = texture2D(uLetras, vUv - ae).r;
+  // Vermelho guarda "Assaf.", aceso em verde; verde guarda "In", em prata
+  vec2 mascara = texture2D(uLetras, vUv).rg;
+  float letra = mascara.r + mascara.g;
+  vec2 ladoR = texture2D(uLetras, vUv + ae).rg;
+  vec2 ladoB = texture2D(uLetras, vUv - ae).rg;
+  float letraR = ladoR.r + ladoR.g;
+  float letraB = ladoB.r + ladoB.g;
   vec3 aceso = luz(vUv * vec2(aspecto, 1.0));
-  cor = mix(cor, aceso, letra);
-  cor += vec3(letraR - letra, 0.0, letraB - letra) * 0.3 * step(0.01, letraR + letraB);
+  cor = mix(cor, aceso, mascara.r);
+  cor = mix(cor, 0.62 + 0.4 * vec3(dot(aceso, vec3(0.33))), mascara.g);
+  cor +=vec3(letraR - letra, 0.0, letraB - letra) * 0.3 * step(0.01, letraR + letraB);
 
   cor *= 1.0 - uRolagem * 0.75;
   gl_FragColor = vec4(pow(max(cor, 0.0), vec3(0.92)), 1.0);
 }
 `
 
-// Desenha ASSAF num canvas 2D no mesmo lugar do espaço reservado no HTML; o shader preenche as letras.
+// Desenha Assaf.In num canvas 2D no mesmo lugar do espaço reservado no HTML; o shader preenche as letras.
 function desenharLetras(ctx2d, largura, altura, vaga, raiz) {
   const { canvas } = ctx2d
   canvas.width = Math.min(largura, 2048)
@@ -78,16 +83,26 @@ function desenharLetras(ctx2d, largura, altura, vaga, raiz) {
   const escala = canvas.width / largura
   const a = vaga.getBoundingClientRect()
   const b = raiz.getBoundingClientRect()
+  const pesada = (px) => `800 expanded ${px}px Archivo`
+  const leve = (px) => `400 ${px}px Archivo`
   const tamanho = 100
-  ctx2d.font = `800 expanded ${tamanho}px Archivo`
-  const fonte = Math.min((a.width / ctx2d.measureText('ASSAF').width) * tamanho, a.height * 1.28) * escala
+  ctx2d.font = pesada(tamanho)
+  const largAssaf = ctx2d.measureText('Assaf.').width
+  ctx2d.font = leve(tamanho)
+  const largIn = ctx2d.measureText('In').width
+  const fonte = Math.min((a.width / (largAssaf + largIn)) * tamanho, a.height * 1.28) * escala
+  const inicio = (a.left - b.left + a.width / 2) * escala - ((largAssaf + largIn) * fonte) / tamanho / 2
+  const y = (a.top - b.top + a.height * 0.53) * escala
   ctx2d.fillStyle = '#000'
   ctx2d.fillRect(0, 0, canvas.width, canvas.height)
-  ctx2d.fillStyle = '#fff'
-  ctx2d.textAlign = 'center'
+  ctx2d.textAlign = 'left'
   ctx2d.textBaseline = 'middle'
-  ctx2d.font = `800 expanded ${fonte}px Archivo`
-  ctx2d.fillText('ASSAF', (a.left - b.left + a.width / 2) * escala, (a.top - b.top + a.height * 0.53) * escala)
+  ctx2d.fillStyle = '#f00'
+  ctx2d.font = pesada(fonte)
+  ctx2d.fillText('Assaf.', inicio, y)
+  ctx2d.fillStyle = '#0f0'
+  ctx2d.font = leve(fonte)
+  ctx2d.fillText('In', inicio + (largAssaf * fonte) / tamanho, y)
 }
 
 export function criarMetal({ canvas, vaga, raiz }) {

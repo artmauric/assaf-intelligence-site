@@ -41,6 +41,7 @@ canvas { display: block; }
 /* Cabeçalho */
 .cabecalho { position: fixed; z-index: 20; top: 0; left: 0; right: 0; display: flex; align-items: center; gap: 28px; padding: calc(10px + env(safe-area-inset-top, 0px)) var(--lateral) 10px; background: rgba(7, 9, 6, .55); -webkit-backdrop-filter: blur(16px) saturate(150%); backdrop-filter: blur(16px) saturate(150%); }
 .logo { font: 800 1.3rem var(--f-titulo); font-stretch: 125%; letter-spacing: -.02em; color: var(--lima); text-decoration: none; margin-right: auto; }
+.in { font-style: normal; font-weight: 400; font-stretch: 100%; letter-spacing: 0; color: var(--texto); }
 .nav-links { display: flex; gap: 26px; }
 .nav-links a { color: var(--texto); text-decoration: none; font-weight: 500; font-size: .97rem; }
 .nav-links a:hover { color: var(--lima); }
@@ -169,7 +170,7 @@ form .aceite { display: flex; align-items: flex-start; gap: 10px; font-weight: 4
 /* Rodapé */
 .rodape { position: relative; z-index: 2; display: grid; gap: 24px; padding: clamp(64px, 9vw, 120px) var(--lateral) 28px; background: var(--grafite); border-radius: 40px 40px 0 0; overflow: hidden; }
 .rodape h2 { max-width: 18ch; }
-.marca { font: 800 21.5vw/.86 var(--f-titulo); font-stretch: 125%; letter-spacing: -.04em; color: var(--lima); margin-top: 28px; white-space: nowrap; }
+.marca { font: 800 20vw/.86 var(--f-titulo); font-stretch: 125%; letter-spacing: -.04em; color: var(--lima); margin-top: 28px; white-space: nowrap; }
 .legal { display: flex; flex-wrap: wrap; gap: 8px 22px; color: var(--suave); font-size: .875rem; }
 .legal a { color: inherit; }
 

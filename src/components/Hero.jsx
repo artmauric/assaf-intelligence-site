@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap, comMovimento } from '../lib/movimento.js'
+import { Logo } from './Logo.jsx'
 
 export function Hero() {
   const raiz = useRef(null)
@@ -36,7 +37,7 @@ export function Hero() {
     <section className={semGl ? 'hero sem-gl' : 'hero'} id="inicio" ref={raiz}>
       <canvas ref={canvas} aria-hidden="true" />
       <div className="hero-texto">
-        <div className="hero-letras" ref={vaga} aria-hidden="true"><span>ASSAF</span></div>
+        <div className="hero-letras" ref={vaga} aria-hidden="true"><Logo /></div>
         <h1>Um site à altura do seu negócio.</h1>
         <p>Sites, cartões digitais e lojas virtuais para clínicas, escritórios, barbearias e comércios locais. Design de estúdio, feito para o celular e com preço fechado.</p>
         <div className="botoes">

@@ -1,5 +1,6 @@
 import { EMPRESA } from '../content.js'
 import { propsZap } from '../lib/zap.js'
+import { Logo } from './Logo.jsx'
 
 export function Rodape() {
   return (
@@ -9,7 +10,7 @@ export function Rodape() {
         <a className="botao botao-lima" {...propsZap}>Falar no WhatsApp</a>
         <a className="botao botao-contorno" href="#pacotes">Ver pacotes</a>
       </div>
-      <div className="marca" aria-hidden="true">ASSAF</div>
+      <div className="marca" aria-hidden="true"><Logo /></div>
       <div className="legal">
         <span>© {new Date().getFullYear()} {EMPRESA.razaoSocial}</span>
         {EMPRESA.cnpj && <span>CNPJ: {EMPRESA.cnpj}</span>}

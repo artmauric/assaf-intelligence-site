@@ -4,8 +4,8 @@ export const WHATS_NUMERO = ''
 
 // Campos vazios não aparecem no site. Preencha para publicar.
 export const EMPRESA = {
-  nome: 'Assaf Inteligence',
-  razaoSocial: 'Assaf Inteligence Consultoria Ltda.',
+  nome: 'Assaf Intelligence',
+  razaoSocial: 'Assaf Intelligence Consultoria Ltda.',
   email: '',
   cidade: '',
   cnpj: '',
