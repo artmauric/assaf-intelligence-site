@@ -18,7 +18,7 @@ export function Pacotes({ aoEscolher, paginas, setPaginas, marcados, setMarcados
             <div className="preco">{p.aPartirDe && <small>a partir de</small>}{p.preco}</div>
             <small className="separado">Com os itens separados: {p.separado}</small>
             <ul>{p.itens.map((i) => <li key={i}>{i}</li>)}</ul>
-            <a className={p.destaque ? 'botao botao-lima' : 'botao botao-contorno'} href="#contato" onClick={() => aoEscolher(p.nome)}>Quero o {p.nome}</a>
+            <a className={p.destaque ? 'botao botao-tema' : 'botao botao-contorno'} href="#contato" onClick={() => aoEscolher(p.nome)}>Quero o {p.nome}</a>
           </article>
         ))}
       </div>
@@ -52,7 +52,7 @@ export function Pacotes({ aoEscolher, paginas, setPaginas, marcados, setMarcados
           <div className="total">{real(orcamento.total)}</div>
           <ul>{orcamento.linhas.map((l) => <li key={l}>{l}</li>)}</ul>
           {orcamento.dica && <p className="dica">{orcamento.dica}</p>}
-          <a className="botao botao-lima" href="#contato" onClick={() => aoEscolher('Monte o seu')}>Enviar este pacote</a>
+          <a className="botao botao-tema" href="#contato" onClick={() => aoEscolher('Monte o seu')}>Enviar este pacote</a>
           <small>O valor final é confirmado na conversa.</small>
         </aside>
       </div>

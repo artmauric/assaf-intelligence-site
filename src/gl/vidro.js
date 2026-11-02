@@ -27,7 +27,7 @@ vec3 fita(vec2 p) {
   float i = floor(x / passo + 0.5);
   vec2 local = vec2(x - i * passo, p.y);
   float d = caixa(local, uCartao * 0.5, RAIO);
-  if (d > 0.0) return vec3(0.03, 0.04, 0.028);
+  if (d > 0.0) return vec3(0.028, 0.03, 0.045);
   vec2 uv = local / uCartao + 0.5;
   float camada = mod(mod(i, N) + N, N);
   return texture(uFotos, vec3(uv.x, 1.0 - uv.y, camada)).rgb;
@@ -52,7 +52,7 @@ void main() {
     vec2 desvio = -n * curva * aro * 1.35;
     cor = vec3(fita(p + desvio * 1.14).r, fita(p + desvio).g, fita(p + desvio * 0.86).b);
     float brilho = smoothstep(-2.5, -0.5, d) * (0.3 + 0.5 * max(dot(n, normalize(vec2(-0.5, 0.8))), 0.0));
-    cor += vec3(0.85, 1.0, 0.6) * brilho + vec3(0.776, 1.0, 0.239) * curva * 0.06;
+    cor += vec3(0.85, 0.85, 1.0) * brilho + vec3(0.31, 0.275, 0.898) * curva * 0.06;
   }
   gl_FragColor = vec4(cor, 1.0);
 }

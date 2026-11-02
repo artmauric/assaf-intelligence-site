@@ -41,7 +41,7 @@ export function Hero() {
         <h1>Um site à altura do seu negócio.</h1>
         <p>Sites, cartões digitais e lojas virtuais para clínicas, escritórios, barbearias e comércios locais. Design de estúdio, feito para o celular e com preço fechado.</p>
         <div className="botoes">
-          <a className="botao botao-lima" href="#contato">Pedir orçamento</a>
+          <a className="botao botao-tema" href="#contato">Pedir orçamento</a>
           <a className="botao botao-contorno" href="#pacotes">Ver pacotes e preços</a>
         </div>
         <small>Pacotes a partir de R$ 397, ou monte o seu a partir de R$ 297.</small>

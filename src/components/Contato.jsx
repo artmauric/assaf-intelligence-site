@@ -69,7 +69,7 @@ export function Contato({ pacote, setPacote, resumo }) {
             <span>Concordo que a {EMPRESA.nome} use meu nome e os dados do meu negócio apenas para responder a este pedido de orçamento, conforme a <a href="#privacidade">Política de Privacidade</a>.</span>
           </label>
           {erro && <p className="erro" role="alert">{erro}</p>}
-          <button className="botao botao-lima" type="submit">Montar mensagem para o WhatsApp</button>
+          <button className="botao botao-tema" type="submit">Montar mensagem para o WhatsApp</button>
           {link && <a className="botao botao-contorno" href={link} target="_blank" rel="noopener">Abrir WhatsApp</a>}
           <small>Este site não armazena seus dados. Eles vão apenas na mensagem que você mesmo envia.</small>
         </form>

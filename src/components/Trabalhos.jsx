@@ -95,7 +95,7 @@ export function Trabalhos() {
         <div className="botoes">
           <button className="seta" type="button" aria-label="Exemplo anterior" onClick={() => ir(posicao - 1)}>‹</button>
           <button className="seta" type="button" aria-label="Próximo exemplo" onClick={() => ir(posicao + 1)}>›</button>
-          <button className="botao botao-lima" type="button" onClick={abrir}>Ver o site</button>
+          <button className="botao botao-tema" type="button" onClick={abrir}>Ver o site</button>
         </div>
       </div>
 

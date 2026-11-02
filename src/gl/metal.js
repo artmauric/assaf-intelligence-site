@@ -8,7 +8,8 @@ uniform float uTempo, uRolagem, uRaio;
 uniform vec2 uRes, uPonteiro;
 uniform sampler2D uLetras;
 
-const vec3 LIMA = vec3(0.776, 1.0, 0.239);
+const vec3 TEMA = vec3(0.31, 0.275, 0.898);
+const vec3 TEMA_CLARO = vec3(0.635, 0.616, 1.0);
 
 // Dobras da chapa: senos deformados por eles mesmos, sem ruído, para manter curvas longas
 float chapa(vec2 p) {
@@ -20,13 +21,13 @@ float chapa(vec2 p) {
   return 0.62 * a + 0.34 * b + 0.2 * c;
 }
 
-// Estúdio refletido: duas softboxes brancas e um recorte verde
+// Estúdio refletido: duas softboxes brancas e um recorte azul
 vec3 estudio(vec3 r) {
   float v = r.y * 0.5 + 0.5;
   float h = r.x * 0.5 + 0.5;
   float caixa = smoothstep(0.08, 0.0, abs(v - 0.74)) + 0.55 * smoothstep(0.05, 0.0, abs(h - 0.2 - 0.1 * v));
   float recorte = smoothstep(0.1, 0.0, abs(v - 0.3 - 0.14 * h));
-  return vec3(0.015, 0.018, 0.015) + vec3(0.92, 0.96, 0.9) * caixa + LIMA * 0.8 * recorte;
+  return vec3(0.015, 0.015, 0.022) + vec3(0.92, 0.93, 0.98) * caixa + TEMA_CLARO * 0.8 * recorte;
 }
 
 vec3 metal(vec2 p) {
@@ -35,7 +36,7 @@ vec3 metal(vec2 p) {
   vec3 n = normalize(vec3(chapa(p - vec2(e, 0.0)) - h, chapa(p - vec2(0.0, e)) - h, e * 1.5));
   vec3 cor = estudio(reflect(vec3(0.0, 0.0, -1.0), n));
   float fresnel = pow(1.0 - n.z, 3.0);
-  return cor * (0.35 + 0.65 * fresnel) + LIMA * 0.16 * fresnel;
+  return cor * (0.35 + 0.65 * fresnel) + TEMA_CLARO * 0.16 * fresnel;
 }
 
 // Letreiro aceso por dentro: faixas de luz que atravessam na diagonal
@@ -43,8 +44,8 @@ vec3 luz(vec2 uv) {
   float d = uv.x * 2.2 + uv.y * 1.1;
   float faixa = sin(d * 7.0 - uTempo * 0.5 + 2.0 * sin(d * 2.1 + uTempo * 0.17));
   float fina = pow(0.5 + 0.5 * sin(d * 34.0 + 3.0 * faixa - uTempo * 0.3), 6.0);
-  vec3 base = mix(vec3(0.12, 0.2, 0.05), LIMA, 0.5 + 0.5 * faixa);
-  return base + vec3(0.85, 0.9, 0.75) * fina;
+  vec3 base = mix(vec3(0.09, 0.07, 0.36), TEMA * 1.25, 0.5 + 0.5 * faixa);
+  return base + vec3(0.85, 0.85, 1.0) * fina;
 }
 
 // "In" de vidro líquido: dobra a chapa que passa atrás, com a borda acesa pela luz
@@ -70,7 +71,7 @@ vec3 vidro(vec2 uv, vec2 p) {
   vec2 sol = normalize(vec2(-0.5, 0.8) + uPonteiro * 0.25);
   float luzDireta = aro * pow(max(dot(fora, sol), 0.0), 2.0);
   float rebote = aro * pow(max(dot(fora, -sol), 0.0), 3.0);
-  return atras * 1.4 + vec3(0.14, 0.165, 0.145) + vec3(1.0, 1.0, 0.97) * (luzDireta + rebote * 0.5 + aro * 0.24);
+  return atras * 1.4 + vec3(0.14, 0.145, 0.18) + vec3(0.97, 0.97, 1.0) * (luzDireta + rebote * 0.5 + aro * 0.24);
 }
 
 void main() {
@@ -81,10 +82,10 @@ void main() {
   // Centro escuro, para o texto ler bem: a chapa só cresce nas bordas
   float largura = min(aspecto, 1.0);
   float borda = smoothstep(0.5, 1.15, length(((vUv - 0.5) * 2.0) * vec2(1.0, 0.55 + 0.25 / largura)));
-  vec3 cor = metal(p * 0.78) * borda + vec3(0.03, 0.04, 0.028) * (1.0 - borda);
+  vec3 cor = metal(p * 0.78) * borda + vec3(0.028, 0.03, 0.045) * (1.0 - borda);
 
   vec2 ae = vec2(1.6 / uRes.x, 0.0);
-  // Vermelho guarda "Assaf.", aceso em verde; verde guarda "In", de vidro
+  // Vermelho guarda "Assaf.", aceso em azul; verde guarda "In", de vidro
   vec2 mascara = texture2D(uLetras, vUv).rg;
   float letra = mascara.r;
   float letraR = texture2D(uLetras, vUv + ae).r;
