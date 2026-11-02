@@ -11,8 +11,9 @@ for demo in ["odonto", "barbearia", "estetica", "advocacia", "loja"]:
     with tempfile.TemporaryDirectory() as tmp:
         png = pathlib.Path(tmp) / "shot.png"
         subprocess.run([EDGE, "--headless=new", "--disable-gpu", "--hide-scrollbars",
-                        f"--user-data-dir={tmp}/perfil", "--window-size=1280,800",
+                        f"--user-data-dir={tmp}/perfil", "--window-size=1440,930",
                         "--virtual-time-budget=4000", f"--screenshot={png}",
                         (raiz / "public" / "demos" / f"{demo}.html").as_uri()],
                        check=True, timeout=60, capture_output=True)
-        Image.open(png).convert("RGB").save(saida / f"{demo}.webp", quality=82)
+        # Corta a faixa de aviso: na borda do vidro ela fica ilegível, e a seção já avisa que são demos
+        Image.open(png).convert("RGB").crop((0, 30, 1440, 930)).save(saida / f"{demo}.webp", quality=82)

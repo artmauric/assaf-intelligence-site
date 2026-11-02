@@ -11,6 +11,7 @@ export function Trabalhos() {
   const dialogo = useRef(null)
   const toque = useRef(null)
   const [posicao, setPosicao] = useState(0)
+  const posicaoAtual = useRef(0)
   const [semGl, setSemGl] = useState(false)
   const [aberto, setAberto] = useState(false)
   const demo = DEMOS[((posicao % N) + N) % N]
@@ -22,7 +23,7 @@ export function Trabalhos() {
       if (!e.isIntersecting) return
       espera.disconnect()
       import('../gl/vidro.js')
-        .then(({ criarVidro }) => criarVidro({ canvas: canvas.current, ids: DEMOS.map((d) => d.id), indice: 0 }))
+        .then(({ criarVidro }) => criarVidro({ canvas: canvas.current, ids: DEMOS.map((d) => d.id), indice: posicaoAtual.current }))
         .then((v) => { if (cancelado) v.destruir(); else vidro.current = v })
         .catch(() => setSemGl(true))
     }, { rootMargin: '600px' })
@@ -35,6 +36,7 @@ export function Trabalhos() {
   }, [])
 
   const ir = (p) => {
+    posicaoAtual.current = p
     setPosicao(p)
     vidro.current?.irPara(p)
   }

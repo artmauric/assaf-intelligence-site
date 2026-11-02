@@ -1,8 +1,9 @@
 import * as THREE from 'three'
 import { criarPalco } from './stage.js'
 
-const LARGURA = 1024
-const ALTURA = 640
+// Celular recebe imagens menores para poupar memória de vídeo
+const LARGURA = window.innerWidth > 900 ? 1440 : 960
+const ALTURA = LARGURA * 0.625
 
 const FRAGMENT = /* glsl */ `
 precision highp float;
@@ -49,7 +50,8 @@ void main() {
       caixa(p + e.yx, lente, RAIO + 10.0) - caixa(p - e.yx, lente, RAIO + 10.0)) + 1e-5);
     float aro = min(34.0, uCartao.x * 0.06);
     float curva = pow(smoothstep(-aro, 0.0, d), 2.5);
-    vec2 desvio = -n * curva * aro * 1.35;
+    // Abaixo de 0.45 a imagem só comprime na borda; acima disso dobra e duplica textos finos
+    vec2 desvio = -n * curva * aro * 0.42;
     cor = vec3(fita(p + desvio * 1.14).r, fita(p + desvio).g, fita(p + desvio * 0.86).b);
     float brilho = smoothstep(-2.5, -0.5, d) * (0.3 + 0.5 * max(dot(n, normalize(vec2(-0.5, 0.8))), 0.0));
     cor += vec3(0.85, 0.85, 1.0) * brilho + vec3(0.31, 0.275, 0.898) * curva * 0.06;

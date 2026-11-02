@@ -309,10 +309,12 @@ if(!CSS.supports('animation-timeline: view()') && 'IntersectionObserver' in wind
 } else document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
 document.getElementById('form').addEventListener('submit',e=>{
   e.preventDefault();
-  const m=document.getElementById('msg');
-  m.textContent='Demonstração: nenhum dado foi enviado';
+  const m=document.getElementById('msg'), f=e.target, falta=[...f.querySelectorAll('[required]')].find(c=>!c.value.trim());
+  if(falta){m.textContent='Preencha o campo "'+f.querySelector('label[for="'+falta.id+'"]').textContent+'".';m.classList.add('show');falta.focus();return}
+  m.textContent='Recebemos seu pedido, '+f.nome.value.trim().split(' ')[0]+'. Retornamos em até 1 dia útil. (Demonstração: nada foi enviado.)';
   m.classList.add('show');
 });
 </script>
+<script src="demo-kit.js" defer></script>
 </body>
 </html>
