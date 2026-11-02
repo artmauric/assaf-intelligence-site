@@ -8,8 +8,8 @@ uniform float uTempo, uRolagem, uRaio;
 uniform vec2 uRes, uPonteiro;
 uniform sampler2D uLetras;
 
-const vec3 TEMA = vec3(0.31, 0.275, 0.898);
-const vec3 TEMA_CLARO = vec3(0.635, 0.616, 1.0);
+const vec3 TEMA = vec3(0.267, 0.4, 1.0);
+const vec3 TEMA_CLARO = vec3(0.624, 0.698, 1.0);
 
 // Dobras da chapa: senos deformados por eles mesmos, sem ruído, para manter curvas longas
 float chapa(vec2 p) {
@@ -44,7 +44,7 @@ vec3 luz(vec2 uv) {
   float d = uv.x * 2.2 + uv.y * 1.1;
   float faixa = sin(d * 7.0 - uTempo * 0.5 + 2.0 * sin(d * 2.1 + uTempo * 0.17));
   float fina = pow(0.5 + 0.5 * sin(d * 34.0 + 3.0 * faixa - uTempo * 0.3), 6.0);
-  vec3 base = mix(vec3(0.09, 0.07, 0.36), TEMA * 1.25, 0.5 + 0.5 * faixa);
+  vec3 base = mix(vec3(0.04, 0.07, 0.36), TEMA * 1.25, 0.5 + 0.5 * faixa);
   return base + vec3(0.85, 0.85, 1.0) * fina;
 }
 

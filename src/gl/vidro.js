@@ -54,7 +54,7 @@ void main() {
     vec2 desvio = -n * curva * aro * 0.42;
     cor = vec3(fita(p + desvio * 1.14).r, fita(p + desvio).g, fita(p + desvio * 0.86).b);
     float brilho = smoothstep(-2.5, -0.5, d) * (0.3 + 0.5 * max(dot(n, normalize(vec2(-0.5, 0.8))), 0.0));
-    cor += vec3(0.85, 0.85, 1.0) * brilho + vec3(0.31, 0.275, 0.898) * curva * 0.06;
+    cor += vec3(0.85, 0.85, 1.0) * brilho + vec3(0.267, 0.4, 1.0) * curva * 0.06;
   }
   gl_FragColor = vec4(cor, 1.0);
 }
