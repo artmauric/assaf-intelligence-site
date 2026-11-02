@@ -2,6 +2,8 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
+// Em GPU fraca a entrada do hero não pode atrasar o texto junto com os quadros
+gsap.ticker.lagSmoothing(0)
 
 export { gsap }
 

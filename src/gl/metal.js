@@ -4,7 +4,7 @@ import { criarPalco } from './stage.js'
 const FRAGMENT = /* glsl */ `
 precision highp float;
 varying vec2 vUv;
-uniform float uTempo, uRolagem;
+uniform float uTempo, uRolagem, uRaio;
 uniform vec2 uRes, uPonteiro;
 uniform sampler2D uLetras;
 
@@ -47,6 +47,32 @@ vec3 luz(vec2 uv) {
   return base + vec3(0.85, 0.9, 0.75) * fina;
 }
 
+// "In" de vidro líquido: dobra a chapa que passa atrás, com a borda acesa pela luz
+vec3 vidro(vec2 uv, vec2 p) {
+  vec2 dentro = vec2(0.0);
+  float cheio = 0.0;
+  for (int i = 0; i < 8; i++) {
+    float a = float(i) * 0.7854;
+    vec2 d = vec2(cos(a), sin(a));
+    float perto = texture2D(uLetras, uv + d * uRaio * 0.5 / uRes).g;
+    float longe = texture2D(uLetras, uv + d * uRaio / uRes).g;
+    dentro += d * (perto + longe);
+    cheio += perto + longe;
+  }
+  dentro /= 8.0;
+  float aro = smoothstep(0.1, 0.5, 1.0 - cheio / 16.0);
+
+  vec2 q = (p + dentro * 0.34) * 0.78;
+  vec2 dispersao = dentro * 0.05;
+  vec3 atras = vec3(metal(q + dispersao).r, metal(q).g, metal(q - dispersao).b);
+
+  vec2 fora = -normalize(dentro + 1e-4);
+  vec2 sol = normalize(vec2(-0.5, 0.8) + uPonteiro * 0.25);
+  float luzDireta = aro * pow(max(dot(fora, sol), 0.0), 2.0);
+  float rebote = aro * pow(max(dot(fora, -sol), 0.0), 3.0);
+  return atras * 1.4 + vec3(0.14, 0.165, 0.145) + vec3(1.0, 1.0, 0.97) * (luzDireta + rebote * 0.5 + aro * 0.24);
+}
+
 void main() {
   float aspecto = uRes.x / uRes.y;
   vec2 p = (vUv - 0.5) * vec2(aspecto, 1.0) * 2.0;
@@ -58,17 +84,14 @@ void main() {
   vec3 cor = metal(p * 0.78) * borda + vec3(0.03, 0.04, 0.028) * (1.0 - borda);
 
   vec2 ae = vec2(1.6 / uRes.x, 0.0);
-  // Vermelho guarda "Assaf.", aceso em verde; verde guarda "In", em prata
+  // Vermelho guarda "Assaf.", aceso em verde; verde guarda "In", de vidro
   vec2 mascara = texture2D(uLetras, vUv).rg;
-  float letra = mascara.r + mascara.g;
-  vec2 ladoR = texture2D(uLetras, vUv + ae).rg;
-  vec2 ladoB = texture2D(uLetras, vUv - ae).rg;
-  float letraR = ladoR.r + ladoR.g;
-  float letraB = ladoB.r + ladoB.g;
-  vec3 aceso = luz(vUv * vec2(aspecto, 1.0));
-  cor = mix(cor, aceso, mascara.r);
-  cor = mix(cor, 0.62 + 0.4 * vec3(dot(aceso, vec3(0.33))), mascara.g);
-  cor +=vec3(letraR - letra, 0.0, letraB - letra) * 0.3 * step(0.01, letraR + letraB);
+  float letra = mascara.r;
+  float letraR = texture2D(uLetras, vUv + ae).r;
+  float letraB = texture2D(uLetras, vUv - ae).r;
+  cor = mix(cor, luz(vUv * vec2(aspecto, 1.0)), letra);
+  if (mascara.g > 0.004) cor = mix(cor, vidro(vUv, p), mascara.g);
+  cor += vec3(letraR - letra, 0.0, letraB - letra) * 0.3 * step(0.01, letraR + letraB);
 
   cor *= 1.0 - uRolagem * 0.75;
   gl_FragColor = vec4(pow(max(cor, 0.0), vec3(0.92)), 1.0);
@@ -84,11 +107,11 @@ function desenharLetras(ctx2d, largura, altura, vaga, raiz) {
   const a = vaga.getBoundingClientRect()
   const b = raiz.getBoundingClientRect()
   const pesada = (px) => `800 expanded ${px}px Archivo`
-  const leve = (px) => `400 ${px}px Archivo`
+  const media = (px) => `700 ${px}px Archivo`
   const tamanho = 100
   ctx2d.font = pesada(tamanho)
   const largAssaf = ctx2d.measureText('Assaf.').width
-  ctx2d.font = leve(tamanho)
+  ctx2d.font = media(tamanho)
   const largIn = ctx2d.measureText('In').width
   const fonte = Math.min((a.width / (largAssaf + largIn)) * tamanho, a.height * 1.28) * escala
   const inicio = (a.left - b.left + a.width / 2) * escala - ((largAssaf + largIn) * fonte) / tamanho / 2
@@ -101,8 +124,9 @@ function desenharLetras(ctx2d, largura, altura, vaga, raiz) {
   ctx2d.font = pesada(fonte)
   ctx2d.fillText('Assaf.', inicio, y)
   ctx2d.fillStyle = '#0f0'
-  ctx2d.font = leve(fonte)
+  ctx2d.font = media(fonte)
   ctx2d.fillText('In', inicio + (largAssaf * fonte) / tamanho, y)
+  return fonte / escala
 }
 
 export function criarMetal({ canvas, vaga, raiz }) {
@@ -112,6 +136,7 @@ export function criarMetal({ canvas, vaga, raiz }) {
   const uniforms = {
     uTempo: { value: 8 },
     uRolagem: { value: 0 },
+    uRaio: { value: 10 },
     uRes: { value: new THREE.Vector2(1, 1) },
     uPonteiro: { value: new THREE.Vector2() },
     uLetras: { value: textura },
@@ -122,7 +147,7 @@ export function criarMetal({ canvas, vaga, raiz }) {
     fragmentShader: FRAGMENT,
     uniforms,
     aoRedimensionar(w, h) {
-      desenharLetras(mascara, w, h, vaga, raiz)
+      uniforms.uRaio.value = desenharLetras(mascara, w, h, vaga, raiz) * 0.05
       textura.dispose() // o tamanho muda: a GPU precisa recriar a textura
       textura.needsUpdate = true
     },

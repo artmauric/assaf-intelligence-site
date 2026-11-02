@@ -41,7 +41,8 @@ canvas { display: block; }
 /* Cabeçalho */
 .cabecalho { position: fixed; z-index: 20; top: 0; left: 0; right: 0; display: flex; align-items: center; gap: 28px; padding: calc(10px + env(safe-area-inset-top, 0px)) var(--lateral) 10px; background: rgba(7, 9, 6, .55); -webkit-backdrop-filter: blur(16px) saturate(150%); backdrop-filter: blur(16px) saturate(150%); }
 .logo { font: 800 1.3rem var(--f-titulo); font-stretch: 125%; letter-spacing: -.02em; color: var(--lima); text-decoration: none; margin-right: auto; }
-.in { font-style: normal; font-weight: 400; font-stretch: 100%; letter-spacing: 0; color: var(--texto); }
+.in { font-style: normal; font-weight: 700; font-stretch: 100%; letter-spacing: 0; color: transparent; background: linear-gradient(150deg, #fff 4%, rgba(255, 255, 255, .34) 30%, rgba(198, 255, 61, .2) 56%, rgba(255, 255, 255, .22) 72%, rgba(255, 255, 255, .86) 98%); -webkit-background-clip: text; background-clip: text; -webkit-text-stroke: .007em rgba(255, 255, 255, .7); }
+.logo .in { background: linear-gradient(150deg, #fff 10%, rgba(255, 255, 255, .62) 52%, #fff 96%); -webkit-background-clip: text; background-clip: text; }
 .nav-links { display: flex; gap: 26px; }
 .nav-links a { color: var(--texto); text-decoration: none; font-weight: 500; font-size: .97rem; }
 .nav-links a:hover { color: var(--lima); }
