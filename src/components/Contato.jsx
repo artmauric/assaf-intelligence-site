@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { DEPOIMENTOS, DUVIDAS, EMPRESA, PACOTES, TIPOS_NEGOCIO, WHATS_NUMERO } from '../content.js'
+import { CONTEUDO, DEPOIMENTOS, DUVIDAS, EMPRESA, PACOTES, TIPOS_NEGOCIO, WHATS_NUMERO } from '../content.js'
 import { mensagemOrcamento } from '../lib/orcamento.js'
 import { linkZap, temNumero } from '../lib/zap.js'
 
@@ -27,7 +27,7 @@ export function Contato({ pacote, setPacote, resumo }) {
     <>
       {DEPOIMENTOS.length > 0 && (
         <section className="secao">
-          <h2>O que dizem os nossos clientes</h2>
+          <h2>{CONTEUDO.depoimentos.titulo}</h2>
           <div className="depoimentos">
             {DEPOIMENTOS.map((d) => <figure key={d.autor}><blockquote>{d.texto}</blockquote><figcaption>{d.autor}</figcaption></figure>)}
           </div>
@@ -35,7 +35,7 @@ export function Contato({ pacote, setPacote, resumo }) {
       )}
 
       <section className="secao duvidas" id="duvidas">
-        <h2>Perguntas frequentes</h2>
+        <h2>{CONTEUDO.duvidas.titulo}</h2>
         <div>
           {DUVIDAS.filter((d) => d.r).map((d) => (
             <details key={d.p}><summary>{d.p}</summary><p>{d.r}</p></details>
@@ -45,8 +45,8 @@ export function Contato({ pacote, setPacote, resumo }) {
 
       <section className="secao contato" id="contato">
         <div>
-          <h2>Conte sobre o seu negócio</h2>
-          <p className="intro">Preencha os campos e a mensagem já vai pronta para o nosso WhatsApp. Leva menos de um minuto.</p>
+          <h2>{CONTEUDO.contato.titulo}</h2>
+          <p className="intro">{CONTEUDO.contato.texto}</p>
           {temNumero && <p>WhatsApp: +{WHATS_NUMERO}</p>}
         </div>
         <form onSubmit={enviar} noValidate>
@@ -77,7 +77,7 @@ export function Contato({ pacote, setPacote, resumo }) {
 
       <section className="secao privacidade" id="privacidade">
         <h3>Política de Privacidade (resumo)</h3>
-        <p>Usamos seu nome, o nome do seu negócio e o tipo de negócio apenas para responder ao seu pedido de orçamento. Você pode pedir a exclusão dos seus dados a qualquer momento pelo nosso WhatsApp ou e-mail.</p>
+        <p>{CONTEUDO.contato.privacidade}</p>
       </section>
     </>
   )

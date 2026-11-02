@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react'
 import { gsap, comMovimento } from '../lib/movimento.js'
+import { CONTEUDO } from '../content.js'
 
-const TEXTO = 'Seu cliente decide em segundos se confia em você, quase sempre olhando para a tela do celular. Cuidamos desse primeiro contato com o capricho de uma marca grande, e com o preço combinado antes de começar.'
+const TEXTO = CONTEUDO.manifesto.texto
 
 export function Manifesto() {
   const raiz = useRef(null)

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from '../lib/movimento.js'
-import { NICHOS, SERVICOS } from '../content.js'
+import { CONTEUDO, NICHOS, SERVICOS } from '../content.js'
 
 const foto = (id) => `${import.meta.env.BASE_URL}shots/${id}.webp`
 
@@ -23,7 +23,7 @@ export function Servicos() {
 
   return (
     <section className="secao" id="servicos">
-      <h2>O que fazemos</h2>
+      <h2>{CONTEUDO.servicos.titulo}</h2>
       <ul className="servicos" onPointerMove={aoMover} onPointerLeave={() => setDemo(null)}>
         {SERVICOS.map((s) => (
           <li key={s.nome} onPointerEnter={() => setDemo(s.demo)}>

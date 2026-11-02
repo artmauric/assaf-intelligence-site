@@ -1,0 +1,69 @@
+:root {
+  --fundo: #06080e;
+  --cartao: #0d111b;
+  --chapa: #151a2a;
+  --linha: rgba(224, 230, 255, .14);
+  --texto: #eef0fa;
+  --suave: #a4a8c0;
+  --tema: #4466ff;
+  --tema-claro: #9fb2ff;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--fundo); color: var(--texto); font: 400 1rem/1.5 "Instrument Sans", system-ui, sans-serif; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--tema-claro); outline-offset: 2px; }
+
+.painel { display: grid; grid-template-columns: 250px minmax(0, 1fr); min-height: 100vh; }
+.painel-carregando { display: grid; place-items: center; min-height: 100vh; color: var(--suave); }
+
+.painel-menu { position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 22px 14px; background: var(--cartao); border-right: 1px solid var(--linha); }
+.painel-logo { display: block; margin: 0 8px 22px; font: 800 1.35rem "Archivo", sans-serif; font-stretch: 125%; color: var(--tema-claro); text-decoration: none; }
+.painel-logo i { font-style: normal; font-weight: 600; font-stretch: 100%; color: var(--texto); }
+.painel-logo small { display: block; font: 500 .8rem "Instrument Sans", sans-serif; color: var(--suave); }
+.painel-menu nav { display: grid; gap: 2px; }
+.painel-menu nav button { text-align: left; padding: 10px 12px; border: 0; border-radius: 10px; background: none; color: var(--suave); cursor: pointer; }
+.painel-menu nav button:hover { background: var(--chapa); color: var(--texto); }
+.painel-menu nav button[aria-current="true"] { background: rgba(68, 102, 255, .16); color: var(--texto); box-shadow: inset 3px 0 0 var(--tema); }
+
+.painel-conteudo { padding: 0 clamp(16px, 4vw, 48px) 80px; max-width: 980px; }
+.painel-topo { position: sticky; top: 0; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 20px 0 16px; background: linear-gradient(var(--fundo) 80%, transparent); }
+.painel-topo h1 { margin: 0; font: 800 1.6rem "Archivo", sans-serif; font-stretch: 112%; }
+.painel-acoes { display: flex; align-items: center; gap: 16px; }
+.painel-acoes a { color: var(--tema-claro); }
+.painel-salvar { min-height: 44px; padding: 0 20px; border: 0; border-radius: 999px; background: var(--tema); color: #fff; font-weight: 600; cursor: pointer; }
+.painel-salvar:disabled { background: var(--chapa); color: var(--suave); cursor: default; }
+.painel-estado { margin: 0 0 16px; padding: 10px 14px; border-radius: 10px; background: var(--chapa); color: var(--suave); }
+.painel-estado.ok { background: rgba(46, 160, 90, .16); color: #9be3b4; }
+.painel-estado.erro { background: rgba(220, 70, 60, .16); color: #ffb4a8; }
+
+.painel-grupo { display: grid; gap: 16px; }
+.painel-campo { display: grid; gap: 6px; }
+.painel-campo label, .painel-check { font-weight: 600; font-size: .92rem; }
+.painel-campo small, .painel-lista > small { color: var(--suave); font-size: .82rem; }
+.painel input:not([type="checkbox"]), .painel select, .painel textarea { width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid var(--linha); border-radius: 10px; background: var(--fundo); }
+.painel textarea { resize: vertical; line-height: 1.5; }
+.painel input[readonly] { color: var(--suave); }
+.painel-check { display: flex; align-items: center; gap: 10px; }
+.painel-check input { width: 20px; height: 20px; accent-color: var(--tema); }
+
+.painel-lista { display: grid; gap: 10px; margin: 0; padding: 16px; border: 1px solid var(--linha); border-radius: 14px; background: var(--cartao); }
+.painel-lista legend { padding: 0 6px; font-weight: 600; }
+.painel-linha { display: flex; gap: 8px; align-items: center; }
+.painel-item { border: 1px solid var(--linha); border-radius: 12px; background: var(--chapa); }
+.painel-item summary { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; cursor: pointer; font-weight: 600; }
+.painel-item[open] summary { border-bottom: 1px solid var(--linha); }
+.painel-item > .painel-grupo { padding: 14px; }
+.painel-ordem { display: flex; gap: 4px; flex: none; }
+.painel-ordem button { min-width: 34px; height: 34px; padding: 0 8px; border: 1px solid var(--linha); border-radius: 8px; background: var(--fundo); cursor: pointer; }
+.painel-ordem button:disabled { opacity: .35; cursor: default; }
+.painel-remover { color: #ffb4a8; }
+.painel-adicionar { justify-self: start; min-height: 38px; padding: 0 14px; border: 1px dashed var(--tema-claro); border-radius: 10px; background: none; color: var(--tema-claro); cursor: pointer; }
+.painel-vazio { margin: 0; color: var(--suave); }
+
+@media (max-width: 760px) {
+  .painel { grid-template-columns: 1fr; }
+  .painel-menu { position: static; height: auto; }
+  .painel-menu nav { display: flex; overflow-x: auto; }
+  .painel-menu nav button { white-space: nowrap; }
+}

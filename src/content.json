@@ -1,0 +1,279 @@
+{
+  "empresa": {
+    "nome": "Assaf Intelligence",
+    "razaoSocial": "Assaf Intelligence Consultoria Ltda.",
+    "whatsapp": "",
+    "email": "",
+    "cidade": "",
+    "cnpj": ""
+  },
+  "hero": {
+    "titulo": "Um site à altura do seu negócio.",
+    "texto": "Sites, cartões digitais e lojas virtuais para clínicas, escritórios, barbearias e comércios locais. Design de estúdio, feito para o celular e com preço fechado.",
+    "botaoPrincipal": "Pedir orçamento",
+    "botaoSecundario": "Ver pacotes e preços"
+  },
+  "manifesto": {
+    "texto": "Seu cliente decide em segundos se confia em você quase sempre olhando para a tela do celular. Cuidamos desse primeiro contato com o capricho de uma marca grande, e com o preço combinado antes de começar."
+  },
+  "servicos": {
+    "titulo": "O que fazemos",
+    "itens": [
+      {
+        "nome": "Cartão digital",
+        "texto": "Uma página para o link da bio do Instagram, com serviços, horário, endereço e botão de WhatsApp.",
+        "demo": "barbearia"
+      },
+      {
+        "nome": "Site do seu negócio",
+        "texto": "Apresenta sua empresa e seus serviços e mostra como o cliente chega até você.",
+        "demo": "odonto"
+      },
+      {
+        "nome": "Loja virtual",
+        "texto": "Venda pela internet, com carrinho e pagamento online. Você mesmo cadastra os produtos pelo celular.",
+        "demo": "loja"
+      },
+      {
+        "nome": "Cadastro de clientes",
+        "texto": "Uma lista organizada dos seus clientes, para lembrar os retornos e não perder contatos.",
+        "demo": "estetica"
+      },
+      {
+        "nome": "Google Meu Negócio",
+        "texto": "Seu negócio aparece no mapa do Google, com horário, fotos e telefone.",
+        "demo": "advocacia"
+      },
+      {
+        "nome": "Melhoria de processos",
+        "texto": "Trocamos o caderno e as planilhas confusas por algo simples e organizado.",
+        "demo": "odonto"
+      }
+    ],
+    "nichos": [
+      "Dentistas e clínicas odontológicas",
+      "Clínicas de estética",
+      "Salões de beleza",
+      "Barbearias",
+      "Advogados",
+      "Psicólogos",
+      "Comércio local",
+      "Prestadores de serviço"
+    ]
+  },
+  "exemplos": {
+    "titulo": "Veja como o seu site pode ficar",
+    "texto": "Estes exemplos são demonstrações com nomes fictícios, criadas para mostrar o estilo do nosso trabalho. Não são clientes reais.",
+    "demos": [
+      {
+        "id": "odonto",
+        "marca": "Sorriso Leve",
+        "tipo": "Clínica odontológica",
+        "texto": "Tratamentos, primeira consulta passo a passo e agendamento pelo WhatsApp."
+      },
+      {
+        "id": "barbearia",
+        "marca": "Navalha Velha",
+        "tipo": "Barbearia",
+        "texto": "Serviços, galeria de cortes e horários de atendimento."
+      },
+      {
+        "id": "estetica",
+        "marca": "Ateliê Pele & Cia",
+        "tipo": "Clínica de estética",
+        "texto": "Procedimentos, ambiente e agendamento rápido."
+      },
+      {
+        "id": "advocacia",
+        "marca": "Moura Advocacia",
+        "tipo": "Escritório de advocacia",
+        "texto": "Áreas de atuação e formulário de primeiro contato, dentro das regras da OAB."
+      },
+      {
+        "id": "loja",
+        "marca": "Empório da Vila",
+        "tipo": "Loja virtual",
+        "texto": "Catálogo com carrinho funcionando, retirada na loja ou entrega no bairro."
+      }
+    ]
+  },
+  "pacotes": {
+    "titulo": "Você sabe quanto vai pagar antes de começar",
+    "texto": "Cada pacote sai mais barato do que contratar os mesmos itens separadamente.",
+    "aviso": "Domínio, hospedagem e taxas de pagamento online são cobrados à parte.",
+    "itens": [
+      {
+        "nome": "Cartão Digital",
+        "para": "Para quem precisa de um bom link na bio.",
+        "valor": 397,
+        "valorSeparado": 537,
+        "aPartirDe": false,
+        "destaque": "",
+        "itens": [
+          "1 página pronta para o celular",
+          "Botão de WhatsApp",
+          "Formulário de orçamento",
+          "Configuração do Google Meu Negócio"
+        ]
+      },
+      {
+        "nome": "Essencial",
+        "para": "Para apresentar bem o seu negócio.",
+        "valor": 890,
+        "valorSeparado": 897,
+        "aPartirDe": false,
+        "destaque": "",
+        "itens": [
+          "Até 4 páginas",
+          "Tudo o que vem no Cartão Digital",
+          "Página de serviços e localização",
+          "Ajuda para colocar o site no ar"
+        ]
+      },
+      {
+        "nome": "Profissional",
+        "para": "Para aparecer mais e receber mais agendamentos.",
+        "valor": 1590,
+        "valorSeparado": 1777,
+        "aPartirDe": false,
+        "destaque": "Mais completo para serviços",
+        "itens": [
+          "Até 8 páginas",
+          "Tudo o que vem no Essencial",
+          "Galeria de fotos",
+          "Agendamento online",
+          "Treinamento de 1 hora"
+        ]
+      },
+      {
+        "nome": "Premium",
+        "para": "Site e loja virtual juntos.",
+        "valor": 2490,
+        "valorSeparado": 3217,
+        "aPartirDe": true,
+        "destaque": "",
+        "itens": [
+          "Tudo o que vem no Profissional",
+          "Loja virtual com até 30 produtos",
+          "Cadastro de clientes simples",
+          "30 dias de suporte após a entrega"
+        ]
+      }
+    ]
+  },
+  "monte": {
+    "titulo": "Monte o seu",
+    "texto": "Comece com uma página com botão de WhatsApp e adicione só o que preferir.",
+    "itemBase": "Página com botão de WhatsApp",
+    "base": 297,
+    "precoPagina": 120,
+    "maxPaginas": 10,
+    "extras": [
+      {
+        "id": "form",
+        "nome": "Formulário de orçamento",
+        "texto": "O cliente pede orçamento direto pelo site",
+        "preco": 90
+      },
+      {
+        "id": "gmn",
+        "nome": "Google Meu Negócio",
+        "texto": "Seu negócio no mapa do Google",
+        "preco": 150
+      },
+      {
+        "id": "gal",
+        "nome": "Galeria de fotos",
+        "texto": "Mostre seus trabalhos e o seu espaço",
+        "preco": 150
+      },
+      {
+        "id": "ag",
+        "nome": "Agendamento online",
+        "texto": "O cliente escolhe o dia e o horário",
+        "preco": 250
+      },
+      {
+        "id": "crm",
+        "nome": "Cadastro de clientes",
+        "texto": "Lista dos seus clientes e dos retornos",
+        "preco": 450
+      },
+      {
+        "id": "loja",
+        "nome": "Loja virtual (até 30 produtos)",
+        "texto": "Até 30 produtos, com carrinho",
+        "preco": 990
+      }
+    ]
+  },
+  "processo": {
+    "titulo": "Da primeira conversa ao site no ar",
+    "passos": [
+      {
+        "nome": "Conversa",
+        "texto": "Você conta como funciona o seu negócio e o que o cliente precisa encontrar."
+      },
+      {
+        "nome": "Proposta",
+        "texto": "Você recebe por escrito o pacote, o preço fechado e o prazo."
+      },
+      {
+        "nome": "Criação",
+        "texto": "Montamos o site, e você aprova tudo pelo celular antes da publicação."
+      },
+      {
+        "nome": "No ar",
+        "texto": "Publicamos o site e mostramos como você mesmo atualiza textos e fotos."
+      }
+    ]
+  },
+  "depoimentos": {
+    "titulo": "O que os nossos clientes dizem sobre nós",
+    "itens": []
+  },
+  "duvidas": {
+    "titulo": "Perguntas frequentes",
+    "itens": [
+      {
+        "p": "Preciso entender de criação de sites para gerenciar o meu site?",
+        "r": "Não. Você recebe um passo a passo para trocar textos, fotos e preços do seu site diretamente pelo celular."
+      },
+      {
+        "p": "Qual é a diferença entre um cartão digital e um site?",
+        "r": "O cartão digital tem uma página só e é ótimo para o link do Instagram e outras redes sociais. Já o site, tem várias páginas para mostrar os produtos/serviços e aparece melhor no Google."
+      },
+      {
+        "p": "Quanto custa para manter o site no ar?",
+        "r": ""
+      },
+      {
+        "p": "Em quanto tempo o site fica pronto?",
+        "r": ""
+      },
+      {
+        "p": "Posso mudar de pacote depois?",
+        "r": ""
+      }
+    ]
+  },
+  "contato": {
+    "titulo": "Conte sobre o seu negócio",
+    "texto": "Preencha os campos e a mensagem já vai pronta para o nosso WhatsApp. Leva menos de um minuto.",
+    "tiposNegocio": [
+      "Dentista / clínica odontológica",
+      "Clínica de estética",
+      "Salão de beleza / barbearia",
+      "Advocacia",
+      "Psicologia",
+      "Loja / comércio local",
+      "Outro"
+    ],
+    "privacidade": "Usamos seu nome, o nome do seu negócio e o tipo de negócio apenas para responder ao seu pedido de orçamento. Você pode pedir a exclusão dos seus dados a qualquer momento pelo nosso WhatsApp ou e-mail."
+  },
+  "rodape": {
+    "titulo": "Seu próximo cliente já está procurando você pelas redes.",
+    "botaoPrincipal": "Falar no WhatsApp",
+    "botaoSecundario": "Ver pacotes"
+  }
+}

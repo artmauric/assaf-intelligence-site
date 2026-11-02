@@ -1,33 +1,36 @@
-export const BASE = 297
-export const PRECO_PAGINA = 120
-export const MAX_PAGINAS = 10
+import dados from '../content.json' with { type: 'json' }
 
-export const EXTRAS = [
-  { id: 'form', nome: 'Formulário de orçamento', texto: 'O cliente pede orçamento direto pelo site', preco: 90 },
-  { id: 'gmn', nome: 'Google Meu Negócio', texto: 'Seu negócio no mapa do Google', preco: 150 },
-  { id: 'gal', nome: 'Galeria de fotos', texto: 'Mostre seus trabalhos e o seu espaço', preco: 150 },
-  { id: 'ag', nome: 'Agendamento online', texto: 'O cliente escolhe o dia e o horário', preco: 250 },
-  { id: 'crm', nome: 'Cadastro de clientes', texto: 'Lista dos seus clientes e dos retornos', preco: 450 },
-  { id: 'loja', nome: 'Loja virtual (até 30 produtos)', texto: 'Até 30 produtos, com carrinho', preco: 990 },
-]
+const { monte, pacotes } = dados
+export const BASE = monte.base
+export const PRECO_PAGINA = monte.precoPagina
+export const MAX_PAGINAS = monte.maxPaginas
+export const EXTRAS = monte.extras
 
 export const real = (n) => 'R$ ' + n.toLocaleString('pt-BR')
+
+const pacote = (nome) => pacotes.itens.find((p) => p.nome === nome)
 
 // Sugere um pacote fechado só quando ele cobre tudo o que foi escolhido e sai mais barato
 function sugerir(total, paginas, tem) {
   const semLojaCrm = !tem('loja') && !tem('crm')
   const semFotosAgenda = !tem('ag') && !tem('gal')
-  if (total > 397 && paginas === 0 && semLojaCrm && semFotosAgenda) return 'O Cartão Digital (R$ 397) já inclui esses itens e sai mais em conta.'
-  if (total > 890 && paginas <= 3 && semLojaCrm && semFotosAgenda) return 'O Essencial (R$ 890) já inclui esses itens e sai mais em conta.'
-  if (total > 1590 && paginas <= 7 && semLojaCrm) return 'O Profissional (R$ 1.590) já inclui esses itens e sai mais em conta.'
-  if (total > 2490 && paginas <= 7) return 'O Premium (a partir de R$ 2.490) já inclui esses itens.'
+  const regras = [
+    ['Cartão Digital', paginas === 0 && semLojaCrm && semFotosAgenda, 'já inclui esses itens e sai mais em conta.'],
+    ['Essencial', paginas <= 3 && semLojaCrm && semFotosAgenda, 'já inclui esses itens e sai mais em conta.'],
+    ['Profissional', paginas <= 7 && semLojaCrm, 'já inclui esses itens e sai mais em conta.'],
+    ['Premium', paginas <= 7, 'já inclui esses itens.'],
+  ]
+  for (const [nome, cobre, fim] of regras) {
+    const p = pacote(nome)
+    if (p && cobre && total > p.valor) return `O ${nome} (${p.aPartirDe ? 'a partir de ' : ''}${real(p.valor)}) ${fim}`
+  }
   return ''
 }
 
 export function calcular(paginas, marcados) {
   const tem = (id) => marcados.includes(id)
   let total = BASE
-  const linhas = ['Página com botão de WhatsApp: ' + real(BASE)]
+  const linhas = [monte.itemBase + ': ' + real(BASE)]
   if (paginas > 0) {
     total += paginas * PRECO_PAGINA
     linhas.push((paginas === 1 ? '1 página extra: ' : paginas + ' páginas extras: ') + real(paginas * PRECO_PAGINA))

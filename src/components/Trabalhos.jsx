@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { DEMOS } from '../content.js'
+import { CONTEUDO, DEMOS } from '../content.js'
 
 const url = (id) => `${import.meta.env.BASE_URL}demos/${id}.html`
 const foto = (id) => `${import.meta.env.BASE_URL}shots/${id}.webp`
@@ -74,8 +74,8 @@ export function Trabalhos() {
 
   return (
     <section className="secao" id="exemplos">
-      <h2>Veja como o seu site pode ficar</h2>
-      <p className="intro">Estes exemplos são demonstrações com nomes fictícios, criadas para mostrar o estilo do nosso trabalho. Não são clientes reais.</p>
+      <h2>{CONTEUDO.exemplos.titulo}</h2>
+      <p className="intro">{CONTEUDO.exemplos.texto}</p>
 
       <div
         className={semGl ? 'vitrine sem-gl' : 'vitrine'}

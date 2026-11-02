@@ -1,14 +1,14 @@
-import { EMPRESA } from '../content.js'
+import { CONTEUDO, EMPRESA } from '../content.js'
 import { propsZap } from '../lib/zap.js'
 import { Logo } from './Logo.jsx'
 
 export function Rodape() {
   return (
     <footer className="rodape">
-      <h2>Seu próximo cliente já está procurando você no celular.</h2>
+      <h2>{CONTEUDO.rodape.titulo}</h2>
       <div className="botoes">
-        <a className="botao botao-tema" {...propsZap}>Falar no WhatsApp</a>
-        <a className="botao botao-contorno" href="#pacotes">Ver pacotes</a>
+        <a className="botao botao-tema" {...propsZap}>{CONTEUDO.rodape.botaoPrincipal}</a>
+        <a className="botao botao-contorno" href="#pacotes">{CONTEUDO.rodape.botaoSecundario}</a>
       </div>
       <div className="marca" aria-hidden="true"><Logo /></div>
       <div className="legal">

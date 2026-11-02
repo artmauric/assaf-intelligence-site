@@ -1,4 +1,4 @@
-import { PACOTES } from '../content.js'
+import { CONTEUDO, PACOTES } from '../content.js'
 import { EXTRAS, MAX_PAGINAS, PRECO_PAGINA, real } from '../lib/orcamento.js'
 
 export function Pacotes({ aoEscolher, paginas, setPaginas, marcados, setMarcados, orcamento }) {
@@ -7,8 +7,8 @@ export function Pacotes({ aoEscolher, paginas, setPaginas, marcados, setMarcados
   return (
     <section className="secao" id="pacotes">
       <div className="pacotes-topo">
-        <h2>Você sabe quanto vai pagar antes de começar</h2>
-        <p className="intro">Cada pacote sai mais barato do que contratar os mesmos itens separadamente.</p>
+        <h2>{CONTEUDO.pacotes.titulo}</h2>
+        <p className="intro">{CONTEUDO.pacotes.texto}</p>
       </div>
 
       <div className="pacotes">
@@ -16,20 +16,20 @@ export function Pacotes({ aoEscolher, paginas, setPaginas, marcados, setMarcados
           <article key={p.nome} className={p.destaque ? 'pacote destaque' : 'pacote'}>
             {p.destaque && <span className="selo">★ {p.destaque}</span>}
             <h3>{p.nome}</h3>
-            <div className="preco">{p.aPartirDe && <small>a partir de</small>}{p.preco}</div>
-            <small className="separado">Com os itens separados: {p.separado}</small>
+            <div className="preco">{p.aPartirDe && <small>a partir de</small>}{real(p.valor)}</div>
+            <small className="separado">Com os itens separados: {real(p.valorSeparado)}</small>
             <ul>{p.itens.map((i) => <li key={i}>{i}</li>)}</ul>
             <a className={p.destaque ? 'botao botao-tema' : 'botao botao-contorno'} href="#contato" onClick={() => aoEscolher(p.nome)}>Quero o {p.nome}</a>
             <p className="para">{p.para}</p>
           </article>
         ))}
       </div>
-      <p className="aviso">Domínio, hospedagem e taxas de pagamento online são cobrados à parte.</p>
+      {CONTEUDO.pacotes.aviso && <p className="aviso">{CONTEUDO.pacotes.aviso}</p>}
 
       <div className="monte" id="monte">
         <div>
-          <h2>Monte o seu</h2>
-          <p className="intro">Comece com uma página com botão de WhatsApp por R$ 297 e adicione só o que precisar.</p>
+          <h2>{CONTEUDO.monte.titulo}</h2>
+          <p className="intro">{CONTEUDO.monte.texto}</p>
           <div className="opcoes">
             <div className="opcao">
               <span className="opcao-nome"><b>Páginas extras</b><small>Ex.: serviços, sobre e contato</small></span>

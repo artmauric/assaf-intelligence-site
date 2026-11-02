@@ -1,6 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap, comMovimento } from '../lib/movimento.js'
 import { Logo } from './Logo.jsx'
+import { CONTEUDO, PACOTES } from '../content.js'
+import { BASE, real } from '../lib/orcamento.js'
+
+const { hero } = CONTEUDO
+const menorPacote = Math.min(...PACOTES.map((p) => p.valor))
 
 export function Hero() {
   const raiz = useRef(null)
@@ -38,13 +43,13 @@ export function Hero() {
       <canvas ref={canvas} aria-hidden="true" />
       <div className="hero-texto">
         <div className="hero-letras" ref={vaga} aria-hidden="true"><Logo /></div>
-        <h1>Um site à altura do seu negócio.</h1>
-        <p>Sites, cartões digitais e lojas virtuais para clínicas, escritórios, barbearias e comércios locais. Design de estúdio, feito para o celular e com preço fechado.</p>
+        <h1>{hero.titulo}</h1>
+        <p>{hero.texto}</p>
         <div className="botoes">
-          <a className="botao botao-tema" href="#contato">Pedir orçamento</a>
-          <a className="botao botao-contorno" href="#pacotes">Ver pacotes e preços</a>
+          <a className="botao botao-tema" href="#contato">{hero.botaoPrincipal}</a>
+          <a className="botao botao-contorno" href="#pacotes">{hero.botaoSecundario}</a>
         </div>
-        <small>Pacotes a partir de R$ 397, ou monte o seu a partir de R$ 297.</small>
+        <small>Pacotes a partir de {real(menorPacote)}, ou monte o seu a partir de {real(BASE)}.</small>
       </div>
     </section>
   )
