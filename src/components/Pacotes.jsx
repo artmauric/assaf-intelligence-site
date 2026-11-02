@@ -6,19 +6,21 @@ export function Pacotes({ aoEscolher, paginas, setPaginas, marcados, setMarcados
 
   return (
     <section className="secao" id="pacotes">
-      <h2>Você sabe quanto vai pagar antes de começar</h2>
-      <p className="intro">Cada pacote sai mais barato do que contratar os mesmos itens separadamente.</p>
+      <div className="pacotes-topo">
+        <h2>Você sabe quanto vai pagar antes de começar</h2>
+        <p className="intro">Cada pacote sai mais barato do que contratar os mesmos itens separadamente.</p>
+      </div>
 
       <div className="pacotes">
         {PACOTES.map((p) => (
           <article key={p.nome} className={p.destaque ? 'pacote destaque' : 'pacote'}>
-            {p.destaque && <span className="selo">{p.destaque}</span>}
+            {p.destaque && <span className="selo">★ {p.destaque}</span>}
             <h3>{p.nome}</h3>
-            <p>{p.para}</p>
             <div className="preco">{p.aPartirDe && <small>a partir de</small>}{p.preco}</div>
             <small className="separado">Com os itens separados: {p.separado}</small>
             <ul>{p.itens.map((i) => <li key={i}>{i}</li>)}</ul>
             <a className={p.destaque ? 'botao botao-tema' : 'botao botao-contorno'} href="#contato" onClick={() => aoEscolher(p.nome)}>Quero o {p.nome}</a>
+            <p className="para">{p.para}</p>
           </article>
         ))}
       </div>

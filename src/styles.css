@@ -105,19 +105,24 @@ canvas { display: block; }
 .janela-demo iframe { flex: 1; width: 100%; border: 0; background: #fff; }
 
 /* Pacotes */
-.pacotes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 44px; }
-.pacote { position: relative; display: flex; flex-direction: column; gap: 10px; padding: 26px 22px 22px; background: var(--grafite); border: 1px solid var(--linha); border-radius: 22px; }
-.pacote > p { color: var(--suave); font-size: .97rem; min-height: 3.2em; }
-.pacote .botao { margin-top: auto; }
-.pacote ul { display: grid; gap: 8px; padding: 14px 0 20px; font-size: .97rem; }
-.pacote li { padding-left: 18px; background: linear-gradient(var(--tema-claro), var(--tema-claro)) 0 .62em / 8px 2px no-repeat; color: #d2d5e8; }
-.preco { font: 800 clamp(1.9rem, 2.6vw, 2.5rem)/1 var(--f-titulo); font-stretch: 112%; letter-spacing: -.02em; min-height: 4rem; display: flex; flex-direction: column; justify-content: flex-end; font-variant-numeric: tabular-nums; }
-.preco small { display: block; margin-bottom: 4px; font: 500 .875rem var(--f-corpo); letter-spacing: 0; }
-.destaque { background: var(--chapa); border-color: var(--tema); }
-.selo { position: absolute; top: -13px; left: 20px; padding: 3px 12px; border-radius: 999px; background: var(--tema); color: #fff; font-size: .8rem; font-weight: 600; }
-.aviso { margin-top: 18px; color: var(--suave); font-size: .92rem; }
-@media (max-width: 1080px) { .pacotes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 640px) { .pacotes { grid-template-columns: 1fr; } .pacote > p { min-height: 0; } }
+.pacotes-topo { display: grid; justify-items: center; text-align: center; }
+.pacotes-topo .intro { margin-inline: auto; }
+.pacotes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 76px; }
+.pacote { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 34px 24px 26px; background: var(--grafite); border: 1px solid var(--linha); border-radius: 20px; }
+.pacote h3 { font: 600 .9rem var(--f-corpo); letter-spacing: .14em; text-transform: uppercase; color: var(--suave); }
+.preco { margin-top: 22px; min-height: 4.4rem; display: flex; flex-direction: column; justify-content: flex-end; font: 800 clamp(2.1rem, 2.9vw, 2.9rem)/1 var(--f-titulo); font-stretch: 112%; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.preco small { display: block; margin-bottom: 6px; font: 500 .85rem var(--f-corpo); letter-spacing: 0; }
+.separado { margin-top: 10px; font-size: .8rem; }
+.pacote ul { flex: 1; width: 100%; display: grid; align-content: start; gap: 12px; margin-top: 26px; padding-bottom: 24px; border-bottom: 1px solid var(--linha); text-align: left; font-size: .96rem; }
+.pacote li { display: flex; gap: 10px; color: #d2d5e8; }
+.pacote li::before { content: "✓"; flex: none; color: var(--tema-claro); font-weight: 700; }
+.pacote .botao { width: 100%; margin-top: 22px; min-height: 48px; border-radius: 12px; }
+.pacote .para { margin-top: 14px; color: var(--suave); font-size: .82rem; }
+.destaque { margin-block: -30px; padding-block: 52px 46px; background: var(--chapa); border: 2px solid var(--tema); box-shadow: 0 34px 90px -34px rgba(79, 70, 229, .6); }
+.selo { position: absolute; top: -2px; right: -2px; padding: 6px 14px; border-radius: 0 20px 0 12px; background: var(--tema); color: #fff; font-size: .8rem; font-weight: 600; }
+.aviso { margin-top: 56px; color: var(--suave); font-size: .92rem; text-align: center; }
+@media (max-width: 1080px) { .aviso { margin-top: 22px; } .pacotes { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px; } .destaque { margin-block: 0; padding-block: 50px 26px; } }
+@media (max-width: 640px) { .pacotes { grid-template-columns: 1fr; } }
 
 .monte { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, .8fr); gap: clamp(28px, 5vw, 72px); align-items: start; margin-top: clamp(72px, 10vw, 128px); scroll-margin-top: 88px; }
 .opcoes { margin-top: 28px; border-top: 1px solid var(--linha); }
